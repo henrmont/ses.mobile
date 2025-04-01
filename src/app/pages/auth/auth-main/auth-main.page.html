@@ -1,0 +1,13 @@
+<ion-content>
+  <div style="padding-bottom: 10px; height: 100%; display: flex; flex-direction: column; justify-content: flex-end; row-gap: 10px; background-image: url(assets/img/bg-abstract.png); background-size: cover; background-position: center center;">
+    <ion-nav-link router-direction="forward" [component]="login" style="width: 90%; align-self: center;">
+      <ion-button expand="block" color="primary" class="login">Entrar</ion-button>
+    </ion-nav-link>
+    <ion-nav-link router-direction="forward" [component]="mtlogin" style="width: 90%; align-self: center;">
+      <ion-button expand="block" color="light">
+        <ion-icon src="assets/icon/icon-mtlogin.svg" style="margin-right: 10px;"></ion-icon>
+        Continuar com mtlogin
+      </ion-button>
+    </ion-nav-link>
+  </div>
+</ion-content>

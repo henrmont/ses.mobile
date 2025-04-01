@@ -1,0 +1,31 @@
+<ion-content class="ion-padding">
+  <div style="height: 100%; display: flex; flex-direction: column; justify-content: center; row-gap: 10px;">
+    <form [formGroup]="formulario" (ngSubmit)="onSubmit()" style="display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 20px; width: 90vw; background-color: rgba(230,230,230,0.9); padding: 10px; border-radius: 10px; box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px;">
+      <ion-input type="password" label="Nova senha" label-placement="floating" formControlName="npassword" style="border-bottom: 1px solid gray;" (focusin)="toggleNPassword()" (focusout)="toggleNPassword()" (keyup)="checkPasswords()">
+        @if(showNPassword) {
+          <ion-input-password-toggle slot="end"></ion-input-password-toggle>
+        }
+      </ion-input>
+      <ion-input type="password" label="Confirmar nova senha" label-placement="floating" formControlName="cpassword" style="border-bottom: 1px solid gray;" (focusin)="toggleCPassword()" (focusout)="toggleCPassword()" (keyup)="checkPasswords()">
+        @if(showCPassword) {
+          <ion-input-password-toggle slot="end"></ion-input-password-toggle>
+        }
+      </ion-input>
+      <div style="width: 100%;">
+        <ion-button expand="block" fill="solid" type="submit" [disabled]="formulario.invalid || !isValidPasswords">Redefinir senha</ion-button>
+      </div>
+
+      <div style="width: 100%;">
+        <ion-button expand="block" fill="outline" color="primary" (click)="popToLogin()">Voltar</ion-button>
+      </div>
+    </form>
+  </div>
+</ion-content>
+
+<ion-toast
+  [isOpen]="isToastOpen"
+  [message]="toastMessage"
+  position="top"
+  [duration]="2000"
+  (didDismiss)="setToastOpen(false)"
+></ion-toast>

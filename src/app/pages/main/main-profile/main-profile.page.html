@@ -1,0 +1,13 @@
+<ion-header [translucent]="true">
+  <ion-toolbar color="primary">
+    <ion-title>Perfil</ion-title>
+    <ion-buttons slot="end">
+      <ion-menu-button class="primary"></ion-menu-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+  <app-main-profile-change-picture [user]="user"></app-main-profile-change-picture>
+  <app-main-profile-change-info [user]="user"></app-main-profile-change-info>
+</ion-content>

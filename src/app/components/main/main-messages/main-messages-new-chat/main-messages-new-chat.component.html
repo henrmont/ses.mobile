@@ -1,0 +1,80 @@
+<ion-item class="user" [button]="true" [lines]="last ? 'none' : 'full'" (click)="setChatModalOpen(true)">
+    <ion-avatar slot="start">
+      <img alt="" src="https://ionicframework.com/docs/img/demos/avatar.svg" />
+    </ion-avatar>
+    <div style="display: flex; flex-direction: column; gap: 5px;">
+      <span style="font-size: 14px;">{{ user.name }}</span>
+      <span style="font-size: 12px;">{{ user.email }}</span>
+    </div>
+</ion-item>
+
+<ion-modal [isOpen]="isChatModalOpen">
+  <ng-template>
+    <ion-header>
+      <ion-toolbar color="primary">
+        <ion-buttons slot="end">
+          <ion-button (click)="setChatModalOpen(false); popToRoot();">
+            <ion-icon slot="icon-only" name="close"></ion-icon>
+          </ion-button>
+        </ion-buttons>
+        @if (chat.person_one.id == user.id) {
+          <ion-chip color="secondary">
+            <ion-avatar>
+              <img alt="" [src]="chat.person_one.picture ? chat.person_one.picture : 'https://ionicframework.com/docs/img/demos/avatar.svg'" />
+            </ion-avatar>
+            <ion-label>{{ chat.person_one.name }}</ion-label>
+          </ion-chip>
+        } @else {
+          <ion-chip color="secondary">
+            <ion-avatar>
+              <img alt="" [src]="chat.person_two.picture ? chat.person_two.picture : 'https://ionicframework.com/docs/img/demos/avatar.svg'" />
+            </ion-avatar>
+            <ion-label>{{ chat.person_two.name }}</ion-label>
+          </ion-chip>
+        }
+      </ion-toolbar>
+    </ion-header>
+    <ion-content class="ion-padding" #content style="transform: rotate(180deg); direction: rtl;" [scrollEvents]="true" (ionScroll)="setShowScrollButton($any($event))">
+      @for (item of chat.messages; track $index) {
+        @defer (on viewport) {
+          @if (item.user_id != user.id) {
+            <div style="display: flex; justify-content: flex-end; width: 100%; transform: rotate(180deg); direction: ltr; padding-left: 10%;">
+              <ion-chip color="success">
+                <ion-label color="dark">{{item.message}}</ion-label>
+                <ion-text color="medium" style="margin-left: 10px; font-size: 12px;">{{ item.created_at | date: 'HH:mm' }}</ion-text>
+              </ion-chip>
+            </div>
+          } @else {
+            <div style="display: flex; justify-content: flex-start; width: 100%; transform: rotate(180deg); direction: ltr; padding-right: 10%;">
+              <ion-chip>
+                <ion-label color="dark">{{item.message}}</ion-label>
+                <ion-text color="medium" style="margin-left: 10px; font-size: 12px;">{{ item.created_at | date: 'HH:mm' }}</ion-text>
+              </ion-chip>
+            </div>
+          }
+        } @placeholder {
+          <div></div>
+        }
+      }
+      @if(showScrollButton) {
+        <ion-fab vertical="top" horizontal="end" slot="fixed">
+          <ion-fab-button size="small" (click)="scrollToTop()">
+            <ion-icon name="arrow-up"></ion-icon>
+          </ion-fab-button>
+        </ion-fab>
+      }
+    </ion-content>
+    <ion-footer>
+      <ion-toolbar color="secondary">
+        <form [formGroup]="messageForm" (ngSubmit)="onMessageSubmit()">
+          <ion-input fill="outline" formControlName="message">
+            <ion-button fill="clear" slot="end" type="submit" [disabled]="messageForm.invalid || messageForm.get('message')?.value == ''">
+              <ion-icon slot="icon-only" name="send"></ion-icon>
+            </ion-button>
+          </ion-input>
+        </form>
+      </ion-toolbar>
+    </ion-footer>
+
+  </ng-template>
+</ion-modal>

@@ -35,3 +35,25 @@
 /* @import "@ionic/angular/css/palettes/dark.always.css"; */
 /* @import "@ionic/angular/css/palettes/dark.class.css"; */
 @import '@ionic/angular/css/palettes/dark.system.css';
+
+ion-toast {
+  margin-top: 60px !important;
+}
+
+ion-button {
+  --border-radius: 10px;
+  --border-width: 1px;
+  --box-shadow: 0;
+  --padding-top: 12px;
+  --padding-bottom: 12px;
+  font-family: "Georama", sans-serif;
+}
+
+ion-title {
+  font-family: "Rubik", sans-serif;
+  font-weight: 400;
+}
+
+ion-list {
+  padding: 0 !important;
+}

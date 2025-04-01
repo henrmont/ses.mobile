@@ -1,0 +1,35 @@
+<ion-header [translucent]="true">
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/main/modules" icon="caret-back" class="primary"></ion-back-button>
+    </ion-buttons>
+    <ion-title>SESADM</ion-title>
+    <ion-buttons slot="end">
+      <ion-menu-button class="primary"></ion-menu-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+  <div style="display: flex; flex-direction: column; row-gap: 15px;">
+
+    <ion-nav-link router-direction="forward" [component]="sesadm_users">
+      <ion-button expand="block" style="height: 120px;">
+        <div style="display: flex; flex-direction: column; align-items: center; gap: 10px;">
+          <ion-icon name="people-outline" style="font-size: 50px;"></ion-icon>
+          <ion-text>Usuários</ion-text>
+        </div>
+      </ion-button>
+    </ion-nav-link>
+
+    <ion-nav-link router-direction="forward" [component]="sesadm_roles">
+      <ion-button expand="block" style="height: 120px;">
+        <div style="display: flex; flex-direction: column; align-items: center; gap: 10px;">
+          <ion-icon name="shield-checkmark-outline" style="font-size: 50px;"></ion-icon>
+          <ion-text>Regras</ion-text>
+        </div>
+      </ion-button>
+    </ion-nav-link>
+
+  </div>
+</ion-content>

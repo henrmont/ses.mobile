@@ -1,0 +1,29 @@
+<ion-content [fullscreen]="true">
+  <div style="width: 100vw; height: 100vh; display: flex; flex-direction: column; gap: 50px; align-items: center; justify-content: center; padding: 20px; background-image: url(assets/img/bg-abstract.jpg); background-size: cover; background-position: center center;">
+    <form [formGroup]="formulario" (ngSubmit)="onSubmit()" style="display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 20px; width: 90vw; background-color: rgba(230,230,230,0.9); padding: 10px; border-radius: 10px; box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px;">
+      <div style="display: flex; justify-content: space-between; width: 100%; gap: 20px;">
+        <ion-input #one type="text" [maskito]="maskitoOptions" formControlName="one" (keyup)="two.setFocus()" (keyup.backspace)="one.setFocus()" style="border-bottom: 1px solid black; text-align: center; font-size: 30px;"></ion-input>
+        <ion-input #two type="text" [maskito]="maskitoOptions" formControlName="two" (keyup)="three.setFocus()" (keyup.backspace)="one.setFocus()" style="border-bottom: 1px solid black; text-align: center; font-size: 30px;"></ion-input>
+        <ion-input #three type="text" [maskito]="maskitoOptions" formControlName="three" (keyup)="four.setFocus()" (keyup.backspace)="two.setFocus()" style="border-bottom: 1px solid black; text-align: center; font-size: 30px;"></ion-input>
+        <ion-input #four type="text" [maskito]="maskitoOptions" formControlName="four" (keyup.backspace)="three.setFocus()" style="border-bottom: 1px solid black; text-align: center; font-size: 30px;"></ion-input>
+      </div>
+      <div style="width: 100%;">
+        <ion-button expand="block" fill="solid" type="submit" [disabled]="formulario.invalid">Verificar</ion-button>
+      </div>
+      <div>
+          <span>Não chegou o email? <a (click)="resendVerificationCode()">Reenviar código</a></span>
+      </div>
+      <ion-nav-link router-direction="back" style="width: 100%;">
+        <ion-button expand="block" type="button" fill="outline">Voltar</ion-button>
+      </ion-nav-link>
+    </form>
+  </div>
+</ion-content>
+
+<ion-toast
+  [isOpen]="isToastOpen"
+  [message]="toastMessage"
+  position="top"
+  [duration]="2000"
+  (didDismiss)="setToastOpen(false)"
+></ion-toast>
