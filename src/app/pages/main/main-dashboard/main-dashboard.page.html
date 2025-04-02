@@ -8,9 +8,21 @@
 </ion-header>
 
 <ion-content>
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">main-dashboard</ion-title>
-    </ion-toolbar>
-  </ion-header>
+  <!-- <ion-refresher slot="fixed" (ionRefresh)="handleRefresh($event)">
+    <ion-refresher-content></ion-refresher-content>
+  </ion-refresher> -->
+  <div style="display: flex; flex-direction: column; gap: 10px;">
+    @for (item of dashboards; track $index) {
+      @defer (on viewport) {
+        <!-- <app-main-home-article [article]="item"></app-main-home-article> -->
+      } @placeholder {
+        <div></div>
+      }
+    } @empty {
+      <div style="width: 100%; margin-top: 20px; display: flex; flex-direction: column; align-items: center;">
+        <ion-icon name="eye-off-outline" color="medium" style="font-size: 100px;"></ion-icon>
+        <h3>Nenhum resultado!</h3>
+      </div>
+    }
+  </div>
 </ion-content>

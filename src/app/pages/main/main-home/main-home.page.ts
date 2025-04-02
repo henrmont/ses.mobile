@@ -12,7 +12,7 @@ import { MainHomeArticleComponent } from 'src/app/components/main/main-home/main
 })
 export class MainHomePage implements OnInit {
 
-  articles: any
+  articles: any = null
 
   constructor(
     private mainService: MainService,
