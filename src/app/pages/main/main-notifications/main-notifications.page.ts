@@ -1,7 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms';
-import { IonContent, IonHeader, IonTitle, IonToolbar, IonButtons, IonMenuButton, IonRefresher, IonRefresherContent, IonList, IonIcon } from '@ionic/angular/standalone';
+import { IonContent, IonHeader, IonTitle, IonToolbar, IonButtons, IonMenuButton, IonRefresher, IonRefresherContent, IonList, IonIcon, IonLoading } from '@ionic/angular/standalone';
 import { MainNotificationsNotificationComponent } from 'src/app/components/main/main-notifications/main-notifications-notification/main-notifications-notification.component';
 import { MainService } from 'src/app/services/main.service';
 
@@ -10,7 +8,7 @@ import { MainService } from 'src/app/services/main.service';
   templateUrl: './main-notifications.page.html',
   styleUrls: ['./main-notifications.page.scss'],
   standalone: true,
-  imports: [IonIcon, IonList, IonRefresherContent, IonRefresher, IonButtons, IonContent, IonHeader, IonTitle, IonToolbar, CommonModule, IonMenuButton, FormsModule, MainNotificationsNotificationComponent]
+  imports: [IonLoading, IonIcon, IonList, IonRefresherContent, IonRefresher, IonButtons, IonContent, IonHeader, IonTitle, IonToolbar, IonMenuButton, MainNotificationsNotificationComponent]
 })
 export class MainNotificationsPage implements OnInit {
 
@@ -19,6 +17,10 @@ export class MainNotificationsPage implements OnInit {
   ) { }
 
   ngOnInit() {
+    this.getNotifications()
+  }
+
+  ionViewWillEnter() {
     this.getNotifications()
   }
 

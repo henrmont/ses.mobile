@@ -10,7 +10,7 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content class="ion-padding">
+<ion-content>
   <ion-refresher slot="fixed" (ionRefresh)="handleRefresh($event)">
     <ion-refresher-content></ion-refresher-content>
   </ion-refresher>
@@ -18,7 +18,6 @@
     @for (item of users; track $index; let last = $last) {
       @defer (on viewport) {
         <app-main-messages-new-chat [user]="item" [last]="last"></app-main-messages-new-chat>
-        <!-- <app-notification-item [notification]="item" (removeNotificationEvent)="removeNotification($event)"></app-notification-item> -->
       } @placeholder {
         <div></div>
       }
@@ -30,3 +29,5 @@
     }
   </ion-list>
 </ion-content>
+
+<ion-loading message="Aguarde" isOpen="true" duration="3000"></ion-loading>

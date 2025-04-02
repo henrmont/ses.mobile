@@ -1,7 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms';
-import { IonContent, IonHeader, IonTitle, IonToolbar, IonButtons, IonMenuButton, IonNavLink, IonButton, IonIcon, IonText, IonRefresher, IonRefresherContent } from '@ionic/angular/standalone';
+import { IonContent, IonHeader, IonTitle, IonToolbar, IonButtons, IonMenuButton, IonNavLink, IonButton, IonIcon, IonText, IonRefresher, IonRefresherContent, IonLoading } from '@ionic/angular/standalone';
 import { MainService } from 'src/app/services/main.service';
 import { SistfdIndexPage } from 'src/app/pages/modules/sistfd/sistfd-index/sistfd-index.page';
 import { SisppiIndexPage } from 'src/app/pages/modules/sisppi/sisppi-index/sisppi-index.page';
@@ -12,7 +10,7 @@ import { SesadmIndexPage } from 'src/app/pages/sesadm/sesadm-index/sesadm-index.
   templateUrl: './main-modules-index.page.html',
   styleUrls: ['./main-modules-index.page.scss'],
   standalone: true,
-  imports: [IonRefresherContent, IonRefresher, IonText, IonIcon, IonButton, IonNavLink, IonButtons, IonContent, IonHeader, IonTitle, IonToolbar, IonMenuButton, CommonModule, FormsModule]
+  imports: [IonLoading, IonRefresherContent, IonRefresher, IonText, IonIcon, IonButton, IonNavLink, IonButtons, IonContent, IonHeader, IonTitle, IonToolbar, IonMenuButton]
 })
 export class MainModulesIndexPage implements OnInit {
 
@@ -36,7 +34,6 @@ export class MainModulesIndexPage implements OnInit {
   handleRefresh(event: CustomEvent) {
     this.checkModulesStatus()
     setTimeout(() => {
-      // Any calls to load data go here
       (event.target as HTMLIonRefresherElement).complete();
     }, 2000);
   }

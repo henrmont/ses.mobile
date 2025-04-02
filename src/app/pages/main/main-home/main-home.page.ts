@@ -19,7 +19,6 @@ export class MainHomePage implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.getArticles()
   }
 
   ionViewWillEnter() {
@@ -27,14 +26,10 @@ export class MainHomePage implements OnInit {
   }
 
   getArticles() {
-    this.setLoadingOpen(true)
     this.mainService.getArticles().subscribe({
       next: (response) => {
         this.articles = response
       },
-      complete: () => {
-        this.setLoadingOpen(false)
-      }
     })
   }
 
@@ -44,12 +39,5 @@ export class MainHomePage implements OnInit {
       event.target.complete();
     }, 2000);
   }
-
-  isLoadingOpen = true;
-  setLoadingOpen(isOpen: boolean) {
-    this.isLoadingOpen = isOpen;
-  }
-
-
 
 }

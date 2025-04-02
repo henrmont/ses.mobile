@@ -1,7 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms';
-import { IonNav, IonContent, IonHeader, IonTitle, IonToolbar, IonFab, IonFabButton, IonButtons, IonButton, IonIcon, IonMenuButton, IonBackButton, IonRefresher, IonRefresherContent, IonList } from '@ionic/angular/standalone';
+import { IonNav, IonContent, IonHeader, IonTitle, IonToolbar, IonButtons, IonIcon, IonMenuButton, IonBackButton, IonRefresher, IonRefresherContent, IonList, IonLoading } from '@ionic/angular/standalone';
 import { MainMessagesNewChatComponent } from 'src/app/components/main/main-messages/main-messages-new-chat/main-messages-new-chat.component';
 import { MainService } from 'src/app/services/main.service';
 
@@ -10,7 +8,7 @@ import { MainService } from 'src/app/services/main.service';
   templateUrl: './main-messages-new-message.page.html',
   styleUrls: ['./main-messages-new-message.page.scss'],
   standalone: true,
-  imports: [IonNav, IonList, IonRefresherContent, IonRefresher, IonBackButton, IonIcon, IonButton, IonButtons, IonFabButton, IonFab, IonContent, IonHeader, IonTitle, IonToolbar, IonMenuButton, CommonModule, FormsModule, MainMessagesNewChatComponent]
+  imports: [IonLoading, IonList, IonRefresherContent, IonRefresher, IonBackButton, IonIcon, IonButtons, IonContent, IonHeader, IonTitle, IonToolbar, IonMenuButton, MainMessagesNewChatComponent]
 })
 export class MainMessagesNewMessagePage implements OnInit {
 

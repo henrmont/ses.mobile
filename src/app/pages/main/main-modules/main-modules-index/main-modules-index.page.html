@@ -11,40 +11,52 @@
   <ion-refresher slot="fixed" (ionRefresh)="handleRefresh($event)">
     <ion-refresher-content></ion-refresher-content>
   </ion-refresher>
-  <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px;">
+  <div style="display: flex; flex-direction: column; gap: 10px;">
     @for (item of modules; track $index) {
-      @switch (item.module.name) {
-        @case ('sesadm') {
-          <ion-nav-link router-direction="forward" [component]="item.module.status ? sesadm : null">
-            <ion-button expand="block" style="height: 120px;" [disabled]="!item.module.status">
-              <div style="display: flex; flex-direction: column; align-items: center; gap: 10px;">
-                <ion-icon [name]="item.module.icon" style="font-size: 50px;"></ion-icon>
-                <ion-text>{{item.module.name}}</ion-text>
-              </div>
-            </ion-button>
-          </ion-nav-link>
+      @defer (on viewport) {
+        @switch (item.module.name) {
+          @case ('sesadm') {
+            <ion-nav-link router-direction="forward" [component]="item.module.status ? sesadm : null">
+              <ion-button expand="block" style="height: 120px;" [disabled]="!item.module.status">
+                <div style="display: flex; flex-direction: column; align-items: center; gap: 10px;">
+                  <ion-icon [name]="item.module.icon" style="font-size: 50px;"></ion-icon>
+                  <ion-text>{{item.module.name}}</ion-text>
+                </div>
+              </ion-button>
+            </ion-nav-link>
+          }
+          @case ('sisppi') {
+            <ion-nav-link router-direction="forward" [component]="item.module.status ? sisppi : null">
+              <ion-button expand="block" style="height: 120px;" [disabled]="!item.module.status">
+                <div style="display: flex; flex-direction: column; align-items: center; gap: 10px;">
+                  <ion-icon [name]="item.module.icon" style="font-size: 50px;"></ion-icon>
+                  <ion-text>{{item.module.name}}</ion-text>
+                </div>
+              </ion-button>
+            </ion-nav-link>
+          }
+          @case ('sistfd') {
+            <ion-nav-link router-direction="forward" [component]="item.module.status ? sistfd : null">
+              <ion-button expand="block" style="height: 120px;" [disabled]="!item.module.status">
+                <div style="display: flex; flex-direction: column; align-items: center; gap: 10px;">
+                  <ion-icon [name]="item.module.icon" style="font-size: 50px;"></ion-icon>
+                  <ion-text>{{item.module.name}}</ion-text>
+                </div>
+              </ion-button>
+            </ion-nav-link>
+          }
         }
-        @case ('sisppi') {
-          <ion-nav-link router-direction="forward" [component]="item.module.status ? sisppi : null">
-            <ion-button expand="block" style="height: 120px;" [disabled]="!item.module.status">
-              <div style="display: flex; flex-direction: column; align-items: center; gap: 10px;">
-                <ion-icon [name]="item.module.icon" style="font-size: 50px;"></ion-icon>
-                <ion-text>{{item.module.name}}</ion-text>
-              </div>
-            </ion-button>
-          </ion-nav-link>
-        }
-        @case ('sistfd') {
-          <ion-nav-link router-direction="forward" [component]="item.module.status ? sistfd : null">
-            <ion-button expand="block" style="height: 120px;" [disabled]="!item.module.status">
-              <div style="display: flex; flex-direction: column; align-items: center; gap: 10px;">
-                <ion-icon [name]="item.module.icon" style="font-size: 50px;"></ion-icon>
-                <ion-text>{{item.module.name}}</ion-text>
-              </div>
-            </ion-button>
-          </ion-nav-link>
-        }
+      } @placeholder {
+        <div></div>
       }
+    } @empty {
+      <div style="width: 100%; margin-top: 20px; display: flex; flex-direction: column; align-items: center;">
+        <ion-icon name="eye-off-outline" color="medium" style="font-size: 100px;"></ion-icon>
+        <h3>Nenhum resultado!</h3>
+      </div>
     }
   </div>
 </ion-content>
+
+<ion-loading message="Aguarde" isOpen="true" duration="3000"></ion-loading>
+

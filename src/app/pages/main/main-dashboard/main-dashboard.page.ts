@@ -8,7 +8,7 @@ import { IonContent, IonHeader, IonTitle, IonToolbar, IonMenuButton, IonButtons,
   templateUrl: './main-dashboard.page.html',
   styleUrls: ['./main-dashboard.page.scss'],
   standalone: true,
-  imports: [IonIcon, IonRefresherContent, IonRefresher, IonButtons, IonContent, IonHeader, IonTitle, IonToolbar, IonMenuButton, CommonModule, FormsModule]
+  imports: [IonIcon, IonRefresherContent, IonRefresher, IonButtons, IonContent, IonHeader, IonTitle, IonToolbar, IonMenuButton ]
 })
 export class MainDashboardPage implements OnInit {
 

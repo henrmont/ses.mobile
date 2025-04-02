@@ -1,11 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { IonContent, IonHeader, IonTitle, IonToolbar, IonButtons, IonFab, IonFabButton, IonIcon, IonMenuButton, IonNav, IonNavLink, IonList, IonItem, IonAvatar, IonNote, IonModal, IonButton, IonListHeader, IonLabel, IonToggle, IonChip, IonText, IonFooter, IonInput, IonSearchbar, IonRefresher, IonRefresherContent } from '@ionic/angular/standalone';
+import { IonContent, IonHeader, IonTitle, IonToolbar, IonButtons, IonFab, IonFabButton, IonIcon, IonMenuButton, IonNavLink, IonList, IonLoading } from '@ionic/angular/standalone';
 import { MainService } from 'src/app/services/main.service';
 import { ActivatedRoute } from '@angular/router';
 import { MainMessagesChatComponent } from 'src/app/components/main/main-messages/main-messages-chat/main-messages-chat.component';
-import { MainMessagesNewChatComponent } from 'src/app/components/main/main-messages/main-messages-new-chat/main-messages-new-chat.component';
 import { MainMessagesNewMessagePage } from '../main-messages-new-message/main-messages-new-message.page';
 
 @Component({
@@ -13,7 +10,7 @@ import { MainMessagesNewMessagePage } from '../main-messages-new-message/main-me
   templateUrl: './main-messages-index.page.html',
   styleUrls: ['./main-messages-index.page.scss'],
   standalone: true,
-  imports: [IonRefresherContent, IonRefresher, IonSearchbar, IonFooter, IonText, IonChip, IonToggle, IonLabel, IonListHeader, IonButton, IonModal, IonNote, IonAvatar, IonItem, IonList, IonNavLink, IonNav, IonIcon, IonFabButton, IonFab, IonButtons, IonContent, IonHeader, IonTitle, IonToolbar, IonMenuButton, IonInput, CommonModule, FormsModule, ReactiveFormsModule, MainMessagesChatComponent, MainMessagesNewChatComponent]
+  imports: [IonLoading,  IonList, IonNavLink, IonIcon, IonFabButton, IonFab, IonButtons, IonContent, IonHeader, IonTitle, IonToolbar, IonMenuButton, MainMessagesChatComponent ]
 })
 export class MainMessagesIndexPage implements OnInit {
 
