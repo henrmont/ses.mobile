@@ -18,7 +18,6 @@ export class MainHomeArticleComponent  implements OnInit {
 
   ngOnInit() {}
 
-  // modal open
   isArticleModalOpen = false;
   setArticleModalOpen(isOpen: boolean) {
     this.isArticleModalOpen = isOpen;

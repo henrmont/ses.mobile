@@ -8,9 +8,11 @@
 </ion-header>
 
 <ion-content class="ion-padding">
+
   <ion-refresher slot="fixed" (ionRefresh)="handleRefresh($event)">
     <ion-refresher-content></ion-refresher-content>
   </ion-refresher>
+
   <div style="display: flex; flex-direction: column; gap: 10px;">
     @for (item of articles; track $index) {
       @defer (on viewport) {
@@ -25,4 +27,7 @@
       </div>
     }
   </div>
+
 </ion-content>
+
+<ion-loading message="Aguarde" [isOpen]="isLoadingOpen"></ion-loading>
