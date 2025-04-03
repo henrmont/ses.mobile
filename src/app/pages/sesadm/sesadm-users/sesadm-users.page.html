@@ -13,18 +13,15 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content class="ion-padding">
-
+<ion-content>
   <ion-refresher slot="fixed" (ionRefresh)="handleRefresh($event)">
     <ion-refresher-content></ion-refresher-content>
   </ion-refresher>
-
   <ion-fab slot="fixed" vertical="bottom" horizontal="end">
-    <ion-fab-button (click)="setModalOpen(true)">
+    <ion-fab-button (click)="setCreateModalOpen(true)">
       <ion-icon name="add"></ion-icon>
     </ion-fab-button>
   </ion-fab>
-
   @for (item of users; track $index; let last = $last) {
     @defer (on viewport) {
       <ion-nav-link router-direction="forward" [component]="sesadm_user" [componentProps]="item">
@@ -36,6 +33,7 @@
             <span style="font-size: 14px;">{{item.name}}</span>
             <span style="font-size: 12px;">{{item.email}}</span>
           </div>
+          <ion-icon [name]="item.is_valid ? 'checkmark' : 'close'" slot="end"></ion-icon>
         </ion-item>
       </ion-nav-link>
     } @placeholder {
@@ -47,26 +45,27 @@
       <h3>Nenhum resultado!</h3>
     </div>
   }
-
 </ion-content>
 
-<ion-modal [isOpen]="isModalOpen">
+<ion-loading message="Aguarde" isOpen="true" duration="3000"></ion-loading>
+
+<ion-modal [isOpen]="isCreateModalOpen">
   <ng-template>
     <ion-header>
       <ion-toolbar color="primary">
         <ion-title>Novo usuário</ion-title>
         <ion-buttons slot="end">
-          <ion-button (click)="setModalOpen(false)">
+          <ion-button (click)="setCreateModalOpen(false)">
             <ion-icon slot="icon-only" name="close"></ion-icon>
           </ion-button>
         </ion-buttons>
       </ion-toolbar>
     </ion-header>
     <ion-content class="ion-padding">
-      <form [formGroup]="formulario" (ngSubmit)="onSubmit()" style="display: flex; flex-direction: column; gap: 20px;">
+      <form [formGroup]="createForm" (ngSubmit)="onCreateSubmit()" style="display: flex; flex-direction: column; gap: 20px;">
         <ion-input type="text" label="Nome" label-placement="floating" formControlName="name" style="border-bottom: 1px solid gray;"></ion-input>
         <ion-input type="email" label="Email" label-placement="floating" formControlName="email" style="border-bottom: 1px solid gray;"></ion-input>
-        <ion-button expand="block" fill="solid" type="submit" [disabled]="formulario.invalid">Cadastrar Usuário</ion-button>
+        <ion-button expand="block" fill="solid" type="submit" [disabled]="createForm.invalid">Cadastrar Usuário</ion-button>
       </form>
     </ion-content>
   </ng-template>
