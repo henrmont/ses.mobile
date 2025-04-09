@@ -7,7 +7,7 @@ import { SesadmService } from 'src/app/services/sesadm.service';
   templateUrl: './sesadm-user-change-roles.component.html',
   styleUrls: ['./sesadm-user-change-roles.component.scss'],
   standalone: true,
-  imports: [IonText, IonToast, IonToggle, IonList, IonContent, IonButtons, IonTitle, IonToolbar, IonHeader, IonModal, IonCardTitle, IonCardContent, IonItem, IonLabel, IonButton, IonIcon, IonCardHeader, IonCard, ]
+  imports: [IonToast, IonToggle, IonList, IonContent, IonButtons, IonTitle, IonToolbar, IonHeader, IonModal, IonCardTitle, IonCardContent, IonItem, IonLabel, IonButton, IonIcon, IonCardHeader, IonCard, ]
 })
 export class SesadmUserChangeRolesComponent  implements OnInit {
 

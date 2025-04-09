@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { IonContent, IonHeader, IonTitle, IonToolbar, IonButtons, IonMenuButton, IonRefresher, IonRefresherContent, IonList, IonIcon, IonLoading } from '@ionic/angular/standalone';
-import { MainNotificationsNotificationComponent } from 'src/app/components/main/main-notifications/main-notifications-notification/main-notifications-notification.component';
+import { MainNotificationsNotificationComponent } from 'src/app/components/main/main-notifications-notification/main-notifications-notification.component';
 import { MainService } from 'src/app/services/main.service';
 
 @Component({

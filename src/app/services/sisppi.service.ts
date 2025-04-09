@@ -10,14 +10,13 @@ const requestOptions = {
 @Injectable({
   providedIn: 'root'
 })
-export class SistfdService {
+export class SisppiService {
 
   constructor(
     private http: HttpClient,
   ) { }
 
   welcome(): Observable<any> {
-    return this.http.get<any>(`${environment.apiSistfdUrl}/welcome`, {headers: requestOptions})
+    return this.http.get<any>(`${environment.apiSisppiUrl}/welcome`, {headers: requestOptions})
   }
-
 }

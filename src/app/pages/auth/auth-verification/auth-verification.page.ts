@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
-import { IonContent, IonHeader, IonTitle, IonToolbar, IonButton, IonToast, IonNavLink, IonInput, IonNav } from '@ionic/angular/standalone';
+import { IonContent, IonButton, IonToast, IonNavLink, IonInput, IonNav } from '@ionic/angular/standalone';
 import { NavParams } from '@ionic/angular';
 import { MaskitoDirective } from '@maskito/angular';
 import { MaskitoOptions } from '@maskito/core';
@@ -13,7 +13,7 @@ import { AuthResetPage } from '../auth-reset/auth-reset.page';
   templateUrl: './auth-verification.page.html',
   styleUrls: ['./auth-verification.page.scss'],
   standalone: true,
-  imports: [IonNavLink, IonToast, IonButton, IonContent, IonHeader, IonTitle, IonToolbar, IonInput, CommonModule, FormsModule, ReactiveFormsModule, MaskitoDirective]
+  imports: [IonNavLink, IonToast, IonButton, IonContent, IonInput, CommonModule, FormsModule, ReactiveFormsModule, MaskitoDirective]
 })
 export class AuthVerificationPage implements OnInit {
 

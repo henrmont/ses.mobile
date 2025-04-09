@@ -1,7 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms';
-import { IonContent, IonHeader, IonTitle, IonToolbar, IonButton, IonIcon, IonNavLink } from '@ionic/angular/standalone';
+import { IonContent, IonButton, IonIcon, IonNavLink } from '@ionic/angular/standalone';
 import { AuthLoginPage } from '../auth-login/auth-login.page';
 import { AuthMtloginPage } from '../auth-mtlogin/auth-mtlogin.page';
 
@@ -10,7 +8,7 @@ import { AuthMtloginPage } from '../auth-mtlogin/auth-mtlogin.page';
   templateUrl: './auth-main.page.html',
   styleUrls: ['./auth-main.page.scss'],
   standalone: true,
-  imports: [IonNavLink, IonIcon, IonButton, IonContent, IonHeader, IonTitle, IonToolbar, CommonModule, FormsModule]
+  imports: [IonNavLink, IonIcon, IonButton, IonContent]
 })
 export class AuthMainPage implements OnInit {
 

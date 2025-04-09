@@ -13,7 +13,7 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content class="ion-padding">
+<ion-content>
 
   <ion-refresher slot="fixed" (ionRefresh)="handleRefresh($event)">
     <ion-refresher-content></ion-refresher-content>
@@ -27,10 +27,7 @@
 
   @for (item of roles; track $index; let last = $last) {
     @defer (on viewport) {
-      <ion-item class="user" [button]="true" [lines]="last ? 'none' : 'full'" (click)="changeRole(item); setUpdateModalOpen(true);">
-        <ion-icon size="large" slot="start" [name]="checkRestrictRole(item.name) ? 'checkmark-circle-outline' : 'close-circle-outline'" [color]="checkRestrictRole(item.name) ? 'success' : 'danger'"></ion-icon>
-        <ion-label slot="end">{{item.name}}</ion-label>
-      </ion-item>
+      <app-sesadm-roles-role [role]="item" [last]="last"></app-sesadm-roles-role>
     } @placeholder {
       <div></div>
     }
@@ -42,6 +39,8 @@
   }
 
 </ion-content>
+
+<ion-loading message="Aguarde" isOpen="true" duration="3000"></ion-loading>
 
 <ion-modal [isOpen]="isCreateModalOpen">
   <ng-template>
@@ -64,41 +63,6 @@
   </ng-template>
 </ion-modal>
 
-<ion-modal [isOpen]="isUpdateModalOpen">
-  <ng-template>
-    <ion-header>
-      <ion-toolbar color="primary">
-        <ion-title>Editar regra</ion-title>
-        <ion-buttons slot="end">
-          <ion-button (click)="setUpdateModalOpen(false)">
-            <ion-icon slot="icon-only" name="close"></ion-icon>
-          </ion-button>
-        </ion-buttons>
-      </ion-toolbar>
-    </ion-header>
-    <ion-content class="ion-padding">
-      <form [formGroup]="updateForm" (ngSubmit)="onUpdateSubmit()" style="display: flex; flex-direction: column; gap: 20px;">
-        <ion-input type="text" label="Nome" label-placement="floating" formControlName="name" style="border-bottom: 1px solid gray;" [readonly]="!checkRestrictRole(role.name)"></ion-input>
-        <ion-list>
-          <ion-list-header>
-            <ion-label>Permissões</ion-label>
-          </ion-list-header>
-          @for (item of permissions; track $index; let last = $last) {
-            <ion-item [lines]="last ? 'none' : 'full'">
-              <ion-label>{{item.name}}</ion-label>
-              <ion-toggle slot="end" [disabled]="!checkRestrictRole(role.name)" [checked]="hasPermission(item.roles, role)" (click)="changePermissionToRole(item)"></ion-toggle>
-            </ion-item>
-          }
-        </ion-list>
-        @if (checkRestrictRole(role.name)) {
-          <ion-button expand="block" fill="solid" type="submit" [disabled]="updateForm.invalid">Alterar regra</ion-button>
-          <ion-button expand="block" fill="solid" type="button" color="danger" (click)="setAlertOpen(true)">Excluir regra</ion-button>
-        }
-      </form>
-    </ion-content>
-  </ng-template>
-</ion-modal>
-
 <ion-toast
   [isOpen]="isToastOpen"
   [message]="toastMessage"
@@ -106,11 +70,3 @@
   [duration]="2000"
   (didDismiss)="setToastOpen(false)"
 ></ion-toast>
-
-<ion-alert
-  [isOpen]="isAlertOpen"
-  header="Apagar regra"
-  message="Deseja apagar a regra?"
-  [buttons]="alertButtons"
-  (didDismiss)="setAlertOpen(false)"
-></ion-alert>

@@ -1,9 +1,7 @@
-import { Component, OnInit } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import { Component, Input, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
-import { IonContent, IonHeader, IonTitle, IonToolbar, IonButtons, IonBackButton, IonSearchbar, IonMenuButton, IonFab, IonFabButton, IonIcon, IonModal, IonButton, IonInput, IonToast, IonRefresher, IonRefresherContent, IonLoading } from '@ionic/angular/standalone';
+import { IonItem, IonIcon, IonLabel, IonContent, IonInput, IonList, IonListHeader, IonToggle, IonButton, IonToast, IonAlert, IonButtons, IonModal, IonHeader, IonToolbar, IonTitle } from "@ionic/angular/standalone";
 import { SesadmService } from 'src/app/services/sesadm.service';
-import { SesadmRolesRoleComponent } from 'src/app/components/sesadm/sesadm-roles-role/sesadm-roles-role.component';
 
 const restrictRoles = [
   'sesadm/sesadm',
@@ -12,13 +10,16 @@ const restrictRoles = [
 ]
 
 @Component({
-  selector: 'app-sesadm-roles',
-  templateUrl: './sesadm-roles.page.html',
-  styleUrls: ['./sesadm-roles.page.scss'],
+  selector: 'app-sesadm-roles-role',
+  templateUrl: './sesadm-roles-role.component.html',
+  styleUrls: ['./sesadm-roles-role.component.scss'],
   standalone: true,
-  imports: [IonLoading, IonRefresherContent, IonRefresher, IonToast, IonButton, IonModal, IonIcon, IonFabButton, IonFab, IonSearchbar, IonBackButton, IonButtons, IonContent, IonHeader, IonTitle, IonToolbar, IonMenuButton, IonInput, CommonModule, FormsModule, ReactiveFormsModule, SesadmRolesRoleComponent]
+  imports: [IonTitle, IonToolbar, IonHeader, IonModal, IonButtons, IonAlert, IonToast, IonButton, IonToggle, IonListHeader, IonList, IonInput, IonContent, IonLabel, IonIcon, IonItem, IonInput, FormsModule, ReactiveFormsModule],
 })
-export class SesadmRolesPage implements OnInit {
+export class SesadmRolesRoleComponent  implements OnInit {
+
+  @Input() role: any
+  @Input() last: any
 
   constructor(
     private formBuilder: FormBuilder,
@@ -26,44 +27,6 @@ export class SesadmRolesPage implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.getRoles()
-  }
-
-  roles: any
-  getRoles() {
-    this.sesadmService.getRoles('sesadm').subscribe({
-      next: (response) => {
-        console.log(response)
-        this.roles = response
-      }
-    })
-  }
-
-  createForm: FormGroup = this.formBuilder.group({
-    name: [null, [Validators.required]],
-  })
-
-  isCreateModalOpen = false;
-  setCreateModalOpen(isOpen: boolean) {
-    this.createForm.patchValue({
-      name: null
-    })
-    this.createForm.markAsUntouched()
-    this.isCreateModalOpen = isOpen
-  }
-
-  onCreateSubmit(): any {
-    this.createForm.patchValue({
-      name: 'sesadm/'+this.createForm.get('name')?.value,
-    })
-    if (this.sesadmService.createRole(this.createForm.value).subscribe()) {
-      this.toastMessage = 'Regra criada com sucesso!'
-      this.setCreateModalOpen(false)
-      this.getRoles()
-    } else {
-      this.toastMessage = 'Erro ao criar regra'
-    }
-    this.setToastOpen(true)
   }
 
   updateForm: FormGroup = this.formBuilder.group({
@@ -76,22 +39,17 @@ export class SesadmRolesPage implements OnInit {
     this.isUpdateModalOpen = isOpen
     this.getPermissions()
     this.updateForm.patchValue({
-      id: this.role['id'],
+      id: this.role.id,
     })
     if (this.isUpdateModalOpen) {
       this.updateForm.patchValue({
-        name: this.role['name'].split('/')[1],
+        name: this.role.name.split('/')[1],
       })
     } else {
       this.updateForm.patchValue({
         name: 'sesadm/'+this.updateForm.get('name')?.value,
       })
     }
-  }
-
-  role: any
-  changeRole(item: any) {
-    this.role = item
   }
 
   checkRestrictRole(role: any) {
@@ -106,10 +64,9 @@ export class SesadmRolesPage implements OnInit {
       name: 'sesadm/'+this.updateForm.get('name')?.value,
     })
     if (this.sesadmService.updateRole(this.updateForm.value).subscribe()) {
-      this.role['name'] = this.updateForm.get('name')?.value
+      this.role.name = this.updateForm.get('name')?.value
       this.toastMessage = 'Regra editada com sucesso!'
       this.setUpdateModalOpen(false)
-      this.getRoles()
     } else {
       this.toastMessage = 'Erro ao editar regra'
     }
@@ -151,10 +108,9 @@ export class SesadmRolesPage implements OnInit {
       text: 'Apagar',
       role: 'confirm',
       handler: () => {
-        if (this.sesadmService.deleteRole(this.role['id']).subscribe()) {
+        if (this.sesadmService.deleteRole(this.role.id).subscribe()) {
           this.toastMessage = 'Regra apagada com sucesso'
           this.setUpdateModalOpen(false)
-          this.getRoles()
         } else {
           this.toastMessage = 'Erro ao apagar regra'
         }
@@ -164,13 +120,6 @@ export class SesadmRolesPage implements OnInit {
   ];
   setAlertOpen(isOpen: boolean) {
     this.isAlertOpen = isOpen
-  }
-
-  handleRefresh(event: CustomEvent) {
-    this.getRoles()
-    setTimeout(() => {
-      (event.target as HTMLIonRefresherElement).complete();
-    }, 2000)
   }
 
   changePermissionToRole(permission: any) {

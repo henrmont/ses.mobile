@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
-import { IonContent, IonHeader, IonTitle, IonToolbar, IonNavLink, IonButton, IonIcon, IonText, IonButtons, IonBackButton, IonMenuButton, IonFab, IonFabButton, IonInput, IonModal, IonToast, IonSearchbar, IonItem, IonAvatar, IonRefresher, IonRefresherContent, IonLoading } from '@ionic/angular/standalone';
+import { IonContent, IonHeader, IonTitle, IonToolbar, IonNavLink, IonButton, IonIcon, IonButtons, IonBackButton, IonMenuButton, IonFab, IonFabButton, IonInput, IonModal, IonToast, IonSearchbar, IonItem, IonAvatar, IonRefresher, IonRefresherContent, IonLoading } from '@ionic/angular/standalone';
 import { AuthService } from 'src/app/services/auth.service';
 import { SesadmService } from 'src/app/services/sesadm.service';
 import { SesadmUserPage } from '../sesadm-user/sesadm-user.page';
@@ -11,7 +11,7 @@ import { SesadmUserPage } from '../sesadm-user/sesadm-user.page';
   templateUrl: './sesadm-users.page.html',
   styleUrls: ['./sesadm-users.page.scss'],
   standalone: true,
-  imports: [IonLoading, IonRefresherContent, IonRefresher, IonAvatar, IonItem, IonSearchbar, IonToast, IonModal, IonInput, IonFabButton, IonFab, IonBackButton, IonButtons, IonText, IonIcon, IonButton, IonNavLink, IonContent, IonHeader, IonTitle, IonToolbar, IonMenuButton, CommonModule, FormsModule, ReactiveFormsModule]
+  imports: [IonLoading, IonRefresherContent, IonRefresher, IonAvatar, IonItem, IonSearchbar, IonToast, IonModal, IonInput, IonFabButton, IonFab, IonBackButton, IonButtons, IonIcon, IonButton, IonNavLink, IonContent, IonHeader, IonTitle, IonToolbar, IonMenuButton, CommonModule, FormsModule, ReactiveFormsModule]
 })
 export class SesadmUsersPage implements OnInit {
 

@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { NavParams } from '@ionic/angular';
-import { IonContent, IonHeader, IonTitle, IonToolbar, IonToast, IonNavLink, IonButton, IonInput, IonInputPasswordToggle, IonNav } from '@ionic/angular/standalone';
+import { IonContent, IonToast, IonButton, IonInput, IonInputPasswordToggle, IonNav } from '@ionic/angular/standalone';
 import { AuthService } from 'src/app/services/auth.service';
 import { AuthLoginPage } from '../auth-login/auth-login.page';
 
@@ -11,7 +11,7 @@ import { AuthLoginPage } from '../auth-login/auth-login.page';
   templateUrl: './auth-reset.page.html',
   styleUrls: ['./auth-reset.page.scss'],
   standalone: true,
-  imports: [IonButton, IonNavLink, IonToast, IonContent, IonHeader, IonTitle, IonToolbar, IonInput, IonInputPasswordToggle, CommonModule, FormsModule, ReactiveFormsModule]
+  imports: [IonButton, IonToast, IonContent, IonInput, IonInputPasswordToggle, CommonModule, FormsModule, ReactiveFormsModule]
 })
 export class AuthResetPage implements OnInit {
 

@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
-import { IonContent, IonHeader, IonTitle, IonToolbar, IonNavLink, IonButton, IonIcon, IonToast, IonInput, IonInputPasswordToggle } from '@ionic/angular/standalone';
+import { IonContent, IonNavLink, IonButton, IonToast, IonInput, IonInputPasswordToggle } from '@ionic/angular/standalone';
 import { Router } from '@angular/router';
 import { AuthService } from 'src/app/services/auth.service';
 import { AuthRecoverPage } from '../auth-recover/auth-recover.page';
@@ -11,7 +11,7 @@ import { AuthRecoverPage } from '../auth-recover/auth-recover.page';
   templateUrl: './auth-login.page.html',
   styleUrls: ['./auth-login.page.scss'],
   standalone: true,
-  imports: [IonToast, IonIcon, IonInput, IonButton, IonNavLink, IonContent, IonHeader, IonTitle, IonToolbar, IonInputPasswordToggle, CommonModule, FormsModule, ReactiveFormsModule]
+  imports: [IonToast, IonInput, IonButton, IonNavLink, IonContent, IonInputPasswordToggle, CommonModule, FormsModule, ReactiveFormsModule]
 })
 export class AuthLoginPage implements OnInit {
 

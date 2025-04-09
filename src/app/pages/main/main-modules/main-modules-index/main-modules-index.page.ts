@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { IonContent, IonHeader, IonTitle, IonToolbar, IonButtons, IonMenuButton, IonNavLink, IonButton, IonIcon, IonText, IonRefresher, IonRefresherContent, IonLoading } from '@ionic/angular/standalone';
 import { MainService } from 'src/app/services/main.service';
-import { SistfdIndexPage } from 'src/app/pages/modules/sistfd/sistfd-index/sistfd-index.page';
-import { SisppiIndexPage } from 'src/app/pages/modules/sisppi/sisppi-index/sisppi-index.page';
+import { SistfdIndexPage } from 'src/app/pages/sistfd/sistfd-index/sistfd-index.page';
+import { SisppiIndexPage } from 'src/app/pages/sisppi/sisppi-index/sisppi-index.page';
 import { SesadmIndexPage } from 'src/app/pages/sesadm/sesadm-index/sesadm-index.page';
 
 @Component({

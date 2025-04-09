@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { IonContent, IonHeader, IonTitle, IonToolbar, IonButtons, IonMenuButton, IonRefresher, IonRefresherContent, IonIcon, IonLoading } from '@ionic/angular/standalone';
 import { MainService } from 'src/app/services/main.service';
-import { MainHomeArticleComponent } from 'src/app/components/main/main-home/main-home-article/main-home-article.component';
+import { MainHomeArticleComponent } from 'src/app/components/main/main-home-article/main-home-article.component';
 
 @Component({
   selector: 'app-main-home',

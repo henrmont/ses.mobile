@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
-import { IonContent, IonHeader, IonTitle, IonToolbar, IonButton, IonNavLink, IonToast, IonInput, IonNav } from '@ionic/angular/standalone';
+import { IonContent, IonButton, IonNavLink, IonToast, IonInput, IonNav } from '@ionic/angular/standalone';
 import { AuthService } from 'src/app/services/auth.service';
 import { AuthVerificationPage } from '../auth-verification/auth-verification.page';
 
@@ -10,7 +10,7 @@ import { AuthVerificationPage } from '../auth-verification/auth-verification.pag
   templateUrl: './auth-recover.page.html',
   styleUrls: ['./auth-recover.page.scss'],
   standalone: true,
-  imports: [IonToast, IonNavLink, IonButton, IonContent, IonHeader, IonTitle, IonToolbar, IonInput, CommonModule, FormsModule, ReactiveFormsModule]
+  imports: [IonToast, IonNavLink, IonButton, IonContent, IonInput, CommonModule, FormsModule, ReactiveFormsModule]
 })
 export class AuthRecoverPage implements OnInit {
 

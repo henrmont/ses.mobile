@@ -63,6 +63,14 @@ export const routes: Routes = [
         loadComponent: () => import('./pages/main/main-info/main-info.page').then( m => m.MainInfoPage),
       },
     ]
+  },  {
+    path: 'sisppi-index',
+    loadComponent: () => import('./pages/sisppi/sisppi-index/sisppi-index.page').then( m => m.SisppiIndexPage)
   },
+  {
+    path: 'sistfd-index',
+    loadComponent: () => import('./pages/sistfd/sistfd-index/sistfd-index.page').then( m => m.SistfdIndexPage)
+  },
+
 
 ];
