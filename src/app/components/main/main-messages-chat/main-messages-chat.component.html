@@ -4,17 +4,17 @@
       <img alt="" src="https://ionicframework.com/docs/img/demos/avatar.svg" />
     </ion-avatar>
     @for (item of chat.messages; track $index; let first = $first;) {
-      <div style="display: flex; flex-direction: column; gap: 5px;">
-        <span style="font-size: 14px;">{{ chat.person_one.name }}</span>
-        @if (first) {
+      @if (first) {
+        <div style="display: flex; flex-direction: column; gap: 5px;">
+          <span style="font-size: 14px;">{{ chat.person_one.name }}</span>
           @if (item.user.id == user.id) {
             <span style="font-size: 12px;">Eu: {{ item.message.length > 30 ? item.message.slice(0, 30) + '...' : item.message }}</span>
           } @else {
             <span style="font-size: 12px;">{{ item.user.name }}: {{ item.message.length > 30 ? item.message.slice(0, 30) + '...' : item.message }}</span>
           }
-        }
-      </div>
-      <ion-note slot="end">{{ item.created_at | date: 'HH:mm' }}</ion-note>
+        </div>
+        <ion-note slot="end">{{ item.created_at | date: 'HH:mm' }}</ion-note>
+      }
     }
   } @else {
     <ion-avatar slot="start">

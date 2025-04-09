@@ -23,12 +23,6 @@ export class MainMessagesNewChatComponent  implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.getUserChat()
-  }
-
-  isChatModalOpen = false;
-  setChatModalOpen(isOpen: boolean) {
-    this.isChatModalOpen = isOpen;
   }
 
   chat: any
@@ -41,6 +35,12 @@ export class MainMessagesNewChatComponent  implements OnInit {
         })
       }
     })
+  }
+
+  isChatModalOpen = false;
+  setChatModalOpen(isOpen: boolean) {
+    this.isChatModalOpen = isOpen;
+    this.getUserChat()
   }
 
   @ViewChild('content') private content!: IonContent
@@ -61,6 +61,17 @@ export class MainMessagesNewChatComponent  implements OnInit {
     message: [''],
   })
 
+  getChat() {
+    this.mainService.getChat(this.chat.id).subscribe({
+      next: (response) => {
+        this.chat = response
+        this.messageForm.patchValue({
+          chat_id: this.chat.id
+        })
+      },
+    })
+  }
+
   onMessageSubmit(): any {
     if (this.mainService.registerMessage(this.messageForm.value).subscribe()) {
       this.messageForm.patchValue({
@@ -68,7 +79,7 @@ export class MainMessagesNewChatComponent  implements OnInit {
       })
       this.messageForm.markAsPristine()
     }
-    this.getUserChat()
+    this.getChat()
   }
 
   popToRoot() {

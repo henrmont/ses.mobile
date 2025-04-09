@@ -34,19 +34,19 @@ export class MainModulesIndexPage implements OnInit {
   handleRefresh(event: CustomEvent) {
     this.checkModulesStatus()
     setTimeout(() => {
-      (event.target as HTMLIonRefresherElement).complete();
-    }, 2000);
+      (event.target as HTMLIonRefresherElement).complete()
+    }, 2000)
   }
 
   private checkModulesStatus() {
     this.mainService.getUserModules().subscribe({
       next: (response) => {
         response.forEach((element: any) => {
-          const url = fetch(element.module.url, { method: 'HEAD', mode: 'no-cors' }); // HEAD request is faster.
+          const url = fetch(element.module.url, { method: 'GET', mode: 'no-cors' })
           url.then((res) => {
             element.module.status = true
-          });
-        });
+          })
+        })
         this.modules = response
       },
     })
