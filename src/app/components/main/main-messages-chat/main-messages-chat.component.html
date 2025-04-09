@@ -1,7 +1,7 @@
 <ion-item class="user" [button]="true" [lines]="last ? 'none' : 'full'" (click)="setChatModalOpen(true)">
   @if (chat.person_one.id != user.id) {
     <ion-avatar slot="start">
-      <img alt="" src="https://ionicframework.com/docs/img/demos/avatar.svg" />
+      <img alt="" [src]="chat.person_one.picture ? chat.person_one.picture : 'https://ionicframework.com/docs/img/demos/avatar.svg'" />
     </ion-avatar>
     @for (item of chat.messages; track $index; let first = $first;) {
       @if (first) {
@@ -18,7 +18,7 @@
     }
   } @else {
     <ion-avatar slot="start">
-      <img alt="" src="https://ionicframework.com/docs/img/demos/avatar.svg" />
+      <img alt="" [src]="chat.person_two.picture ? chat.person_two.picture : 'https://ionicframework.com/docs/img/demos/avatar.svg'" />
     </ion-avatar>
     @for (item of chat.messages; track $index; let first = $first;) {
       @if (first) {

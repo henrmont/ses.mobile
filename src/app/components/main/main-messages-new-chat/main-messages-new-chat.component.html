@@ -1,6 +1,6 @@
 <ion-item class="user" [button]="true" [lines]="last ? 'none' : 'full'" (click)="setChatModalOpen(true);">
   <ion-avatar slot="start">
-    <img alt="" src="https://ionicframework.com/docs/img/demos/avatar.svg" />
+    <img alt="" [src]="user.picture ? user.picture : 'https://ionicframework.com/docs/img/demos/avatar.svg'" />
   </ion-avatar>
   <div style="display: flex; flex-direction: column; gap: 5px;">
     <span style="font-size: 14px;">{{ user.name }}</span>
