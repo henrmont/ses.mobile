@@ -10,26 +10,50 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content class="ion-padding">
-  <div style="display: flex; flex-direction: column; row-gap: 15px;">
+<ion-content>
+  <ion-grid>
+    <ion-row>
+      <ion-col sizeXs="12" sizeSm="12" sizeMd="6" sizeLg="6" sizeXl="4">
+        <ion-nav-link router-direction="forward" [component]="sesadm_users">
+          <ion-button expand="block" style="height: 120px;">
+            <div style="display: flex; flex-direction: column; align-items: center; gap: 10px;">
+              <ion-icon name="people-outline" style="font-size: 50px;"></ion-icon>
+              <ion-text>Usuários</ion-text>
+            </div>
+          </ion-button>
+        </ion-nav-link>
+      </ion-col>
+      <ion-col sizeXs="12" sizeSm="12" sizeMd="6" sizeLg="6" sizeXl="4">
+        <ion-nav-link router-direction="forward" [component]="sesadm_roles">
+          <ion-button expand="block" style="height: 120px;">
+            <div style="display: flex; flex-direction: column; align-items: center; gap: 10px;">
+              <ion-icon name="shield-checkmark-outline" style="font-size: 50px;"></ion-icon>
+              <ion-text>Regras</ion-text>
+            </div>
+          </ion-button>
+        </ion-nav-link>
+      </ion-col>
+      <ion-col sizeXs="12" sizeSm="12" sizeMd="6" sizeLg="6" sizeXl="4">
+        <ion-nav-link router-direction="forward" [component]="sesadm_sigtap">
+          <ion-button expand="block" style="height: 120px;">
+            <div style="display: flex; flex-direction: column; align-items: center; gap: 10px;">
+              <ion-icon name="medkit-outline" style="font-size: 50px;"></ion-icon>
+              <ion-text>Sigtap</ion-text>
+            </div>
+          </ion-button>
+        </ion-nav-link>
+      </ion-col>
+      <ion-col sizeXs="12" sizeSm="12" sizeMd="6" sizeLg="6" sizeXl="4">
+        <ion-nav-link router-direction="forward" [component]="sesadm_counties">
+          <ion-button expand="block" style="height: 120px;">
+            <div style="display: flex; flex-direction: column; align-items: center; gap: 10px;">
+              <ion-icon name="map-outline" style="font-size: 50px;"></ion-icon>
+              <ion-text>Municípios</ion-text>
+            </div>
+          </ion-button>
+        </ion-nav-link>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
 
-    <ion-nav-link router-direction="forward" [component]="sesadm_users">
-      <ion-button expand="block" style="height: 120px;">
-        <div style="display: flex; flex-direction: column; align-items: center; gap: 10px;">
-          <ion-icon name="people-outline" style="font-size: 50px;"></ion-icon>
-          <ion-text>Usuários</ion-text>
-        </div>
-      </ion-button>
-    </ion-nav-link>
-
-    <ion-nav-link router-direction="forward" [component]="sesadm_roles">
-      <ion-button expand="block" style="height: 120px;">
-        <div style="display: flex; flex-direction: column; align-items: center; gap: 10px;">
-          <ion-icon name="shield-checkmark-outline" style="font-size: 50px;"></ion-icon>
-          <ion-text>Regras</ion-text>
-        </div>
-      </ion-button>
-    </ion-nav-link>
-
-  </div>
 </ion-content>

@@ -1,0 +1,84 @@
+<ion-item class="user" [button]="true" [lines]="last ? 'none' : 'full'" (click)="setShowModalOpen(true)">
+  <ion-text slot="start" style="font-size: 14px;">{{county.name}}</ion-text>
+  <ion-icon name="chevron-forward" slot="end" size="small"></ion-icon>
+</ion-item>
+
+<ion-modal [isOpen]="isShowModalOpen">
+  <ng-template>
+    <ion-header>
+      <ion-toolbar color="primary">
+        <ion-title>Visualizar município</ion-title>
+        <ion-buttons slot="end">
+          <ion-button (click)="setShowModalOpen(false)">
+            <ion-icon slot="icon-only" name="close"></ion-icon>
+          </ion-button>
+        </ion-buttons>
+      </ion-toolbar>
+    </ion-header>
+    <ion-content class="ion-padding">
+      <ion-list>
+        <ion-item lines="full">
+          <ion-label>
+            <h3>Nome</h3>
+            <p>{{county.name}}</p>
+          </ion-label>
+        </ion-item>
+        <ion-item lines="full">
+          <ion-label>
+            <h3>Código IBGE</h3>
+            <p>{{county.ibge_code}}</p>
+          </ion-label>
+        </ion-item>
+        <ion-item lines="full">
+          <ion-label>
+            <h3>UF</h3>
+            <p>{{county.fu}}</p>
+          </ion-label>
+        </ion-item>
+        <ion-item lines="full">
+          <ion-label>
+            <h3>Ano base da população</h3>
+            <p>{{county.tcu_population_base_year | date: 'YYYY'}}</p>
+          </ion-label>
+        </ion-item>
+        <ion-item lines="full">
+          <ion-label>
+            <h3>População</h3>
+            <p>{{county.population}}</p>
+          </ion-label>
+        </ion-item>
+        <ion-item lines="full">
+          <ion-label>
+            <h3>Região de saúde</h3>
+            <p>{{county.health_region.name}}</p>
+          </ion-label>
+        </ion-item>
+        <ion-item lines="full">
+          <ion-label>
+            <h3>Macrorregião</h3>
+            <p>{{county.macroregion}}</p>
+          </ion-label>
+        </ion-item>
+        <ion-item lines="full">
+          <ion-label>
+            <h3>Município polo</h3>
+            <p>{{county.polemunicipality}}</p>
+          </ion-label>
+        </ion-item>
+        <ion-item lines="full">
+          <ion-label>
+            <h3>Distância do município polo</h3>
+            <p>{{county.distance_from_pole_municipality}}</p>
+          </ion-label>
+        </ion-item>
+        <ion-item lines="none">
+          <ion-label>
+            <h3>Distância da capital</h3>
+            <p>{{county.distance_from_the_capital}}</p>
+          </ion-label>
+        </ion-item>
+      </ion-list>
+      <img alt="Silhouette of mountains" [src]="county.img_map ? county.img_map : 'https://ionicframework.com/docs/img/demos/card-media.png'" />
+    </ion-content>
+  </ng-template>
+</ion-modal>

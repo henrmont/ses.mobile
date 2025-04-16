@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, RouterModule } from '@angular/router';
 import { IonRouterOutlet, IonLabel, IonIcon, IonItem, IonItemDivider, IonNote, IonList, IonContent, IonMenu, IonMenuToggle, IonTabs, IonTabBar, IonTabButton, IonBadge } from "@ionic/angular/standalone";
 import { addIcons } from 'ionicons';
-import { informationCircleOutline, shieldCheckmarkOutline, personOutline, checkmarkCircle, warning, logOutOutline, chatbubbles, notifications, home, apps, statsChart, add, caretBack, airplaneOutline, walletOutline, chevronForward, peopleOutline, close, eyeOffOutline, createOutline, settingsOutline, checkmarkCircleOutline, closeCircleOutline, arrowUp, send, notificationsOffOutline, cameraOutline, checkmark } from 'ionicons/icons';
+import { informationCircleOutline, shieldCheckmarkOutline, personOutline, checkmarkCircle, warning, logOutOutline, chatbubbles, notifications, home, apps, statsChart, add, caretBack, airplaneOutline, walletOutline, chevronForward, peopleOutline, close, eyeOffOutline, createOutline, settingsOutline, checkmarkCircleOutline, closeCircleOutline, arrowUp, send, notificationsOffOutline, cameraOutline, checkmark, medkitOutline, cloudUploadOutline, calendarOutline, mapOutline } from 'ionicons/icons';
 import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
@@ -20,7 +20,7 @@ export class MainLayoutComponent  implements OnInit {
     public route: ActivatedRoute,
     private authService: AuthService,
   ) {
-    addIcons({ informationCircleOutline, shieldCheckmarkOutline, personOutline, checkmarkCircle, warning, logOutOutline, chatbubbles, notifications, home, apps, statsChart, add, caretBack, airplaneOutline, walletOutline, chevronForward, peopleOutline, close, eyeOffOutline, createOutline, settingsOutline, checkmarkCircleOutline, closeCircleOutline, arrowUp, send, notificationsOffOutline, cameraOutline, checkmark })
+    addIcons({ informationCircleOutline, shieldCheckmarkOutline, personOutline, checkmarkCircle, warning, logOutOutline, chatbubbles, notifications, home, apps, statsChart, add, caretBack, airplaneOutline, walletOutline, chevronForward, peopleOutline, close, eyeOffOutline, createOutline, settingsOutline, checkmarkCircleOutline, closeCircleOutline, arrowUp, send, notificationsOffOutline, cameraOutline, checkmark, medkitOutline, cloudUploadOutline, calendarOutline, mapOutline })
   }
 
   ngOnInit() {

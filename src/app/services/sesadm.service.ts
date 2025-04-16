@@ -67,4 +67,9 @@ export class SesadmService {
   changeRoleToUser(role_id: any, user_id: any): Observable<any> {
     return this.http.patch<any>(`${environment.apiUrl}/role/change/role/to/user/${role_id}/${user_id}`, {headers: requestOptions})
   }
+
+  getCounties(): Observable<any> {
+    return this.http.get<any>(`${environment.apiUrl}/county/get/counties`, {headers: requestOptions})
+  }
+
 }

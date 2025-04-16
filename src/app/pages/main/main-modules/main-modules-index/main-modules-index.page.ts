@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { IonContent, IonHeader, IonTitle, IonToolbar, IonButtons, IonMenuButton, IonNavLink, IonButton, IonIcon, IonText, IonRefresher, IonRefresherContent, IonLoading } from '@ionic/angular/standalone';
+import { IonContent, IonHeader, IonTitle, IonToolbar, IonButtons, IonMenuButton, IonNavLink, IonButton, IonIcon, IonText, IonRefresher, IonRefresherContent, IonLoading, IonGrid, IonRow, IonCol } from '@ionic/angular/standalone';
 import { MainService } from 'src/app/services/main.service';
 import { SistfdIndexPage } from 'src/app/pages/sistfd/sistfd-index/sistfd-index.page';
 import { SisppiIndexPage } from 'src/app/pages/sisppi/sisppi-index/sisppi-index.page';
@@ -10,7 +10,7 @@ import { SesadmIndexPage } from 'src/app/pages/sesadm/sesadm-index/sesadm-index.
   templateUrl: './main-modules-index.page.html',
   styleUrls: ['./main-modules-index.page.scss'],
   standalone: true,
-  imports: [IonLoading, IonRefresherContent, IonRefresher, IonText, IonIcon, IonButton, IonNavLink, IonButtons, IonContent, IonHeader, IonTitle, IonToolbar, IonMenuButton]
+  imports: [IonCol, IonRow, IonGrid, IonLoading, IonRefresherContent, IonRefresher, IonText, IonIcon, IonButton, IonNavLink, IonButtons, IonContent, IonHeader, IonTitle, IonToolbar, IonMenuButton]
 })
 export class MainModulesIndexPage implements OnInit {
 

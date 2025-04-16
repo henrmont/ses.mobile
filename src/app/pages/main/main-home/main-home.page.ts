@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { IonContent, IonHeader, IonTitle, IonToolbar, IonButtons, IonMenuButton, IonRefresher, IonRefresherContent, IonIcon, IonLoading } from '@ionic/angular/standalone';
+import { IonContent, IonHeader, IonTitle, IonToolbar, IonButtons, IonMenuButton, IonRefresher, IonRefresherContent, IonIcon, IonLoading, IonGrid, IonRow, IonCol } from '@ionic/angular/standalone';
 import { MainService } from 'src/app/services/main.service';
 import { MainHomeArticleComponent } from 'src/app/components/main/main-home-article/main-home-article.component';
 
@@ -8,7 +8,7 @@ import { MainHomeArticleComponent } from 'src/app/components/main/main-home-arti
   templateUrl: './main-home.page.html',
   styleUrls: ['./main-home.page.scss'],
   standalone: true,
-  imports: [IonLoading, IonIcon, IonRefresherContent, IonRefresher, IonButtons, IonContent, IonHeader, IonTitle, IonToolbar, IonMenuButton, MainHomeArticleComponent]
+  imports: [IonCol, IonRow, IonGrid, IonLoading, IonIcon, IonRefresherContent, IonRefresher, IonButtons, IonContent, IonHeader, IonTitle, IonToolbar, IonMenuButton, MainHomeArticleComponent]
 })
 export class MainHomePage implements OnInit {
 

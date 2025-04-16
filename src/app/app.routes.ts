@@ -71,6 +71,14 @@ export const routes: Routes = [
     path: 'sistfd-index',
     loadComponent: () => import('./pages/sistfd/sistfd-index/sistfd-index.page').then( m => m.SistfdIndexPage)
   },
+  {
+    path: 'sesadm-sigtap',
+    loadComponent: () => import('./pages/sesadm/sesadm-sigtap/sesadm-sigtap.page').then( m => m.SesadmSigtapPage)
+  },
+  {
+    path: 'sesadm-counties',
+    loadComponent: () => import('./pages/sesadm/sesadm-counties/sesadm-counties.page').then( m => m.SesadmCountiesPage)
+  },
 
 
 ];
