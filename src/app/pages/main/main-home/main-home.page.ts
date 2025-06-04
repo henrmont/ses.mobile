@@ -12,7 +12,7 @@ import { MainHomeArticleComponent } from 'src/app/components/main/main-home-arti
 })
 export class MainHomePage implements OnInit {
 
-  articles: any = null
+
 
   constructor(
     private mainService: MainService,
@@ -25,6 +25,7 @@ export class MainHomePage implements OnInit {
     this.getArticles()
   }
 
+  articles: any = null
   getArticles() {
     this.mainService.getArticles().subscribe({
       next: (response) => {

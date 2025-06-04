@@ -7,7 +7,7 @@
     @for (item of user.modules; track $index; let last = $last) {
       <ion-item [lines]="last ? 'none' : 'full'" color="light">
         <ion-icon size="large" slot="start" src="assets/icon/icon-mtlogin.svg"></ion-icon>
-        <ion-label slot="end">{{item.module.name}}</ion-label>
+        <ion-text class="content" style="font-size: 14px;" slot="end">{{item.module.name}}</ion-text>
       </ion-item>
     } @empty {
       <ion-item lines="none" color="light">
@@ -40,7 +40,7 @@
         @for (item of modules; track $index; let last = $last) {
           <ion-item [lines]="last ? 'none' : 'full'">
             <ion-icon size="large" slot="start" src="assets/icon/icon-mtlogin.svg"></ion-icon>
-            <ion-label>{{item.name}}</ion-label>
+            <ion-text class="title">{{item.name}}</ion-text>
             <ion-toggle slot="end" [checked]="checkUserModule(item)" (click)="changeUserModule(item.id)"></ion-toggle>
           </ion-item>
         }

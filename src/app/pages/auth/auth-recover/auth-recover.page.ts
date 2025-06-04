@@ -33,9 +33,11 @@ export class AuthRecoverPage implements OnInit {
     this.isToastOpen = isOpen;
   }
 
+  id: any
   onSubmit(): any {
     this.authService.sendVerificationCode(this.formulario.value).subscribe({
       next: (response) => {
+        this.id = response.id
         this.toastMessage = response.message
         this.setToastOpen(true)
       },
@@ -45,7 +47,7 @@ export class AuthRecoverPage implements OnInit {
       },
       complete: () => {
         this.nav.push(AuthVerificationPage, {
-          email: this.formulario.value.email
+          id: this.id
         })
       }
     })

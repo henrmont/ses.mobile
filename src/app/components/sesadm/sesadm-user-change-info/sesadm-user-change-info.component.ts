@@ -13,6 +13,7 @@ import { SesadmService } from 'src/app/services/sesadm.service';
 export class SesadmUserChangeInfoComponent  implements OnInit {
 
   @Input() user: any
+  @Input() module: any
   @Output() updateUser = new EventEmitter<any>;
 
   constructor(
@@ -39,7 +40,7 @@ export class SesadmUserChangeInfoComponent  implements OnInit {
   }
 
   onUpdateSubmit(): any {
-    if (this.sesadmService.changeInfoUser(this.updateForm.value).subscribe()) {
+    if (this.sesadmService.changeInfoUser(this.module, this.updateForm.value).subscribe()) {
       this.toastMessage = 'Usuário atualizado com sucesso!'
       this.updateUser.emit()
       this.setUpdateModalOpen(false)

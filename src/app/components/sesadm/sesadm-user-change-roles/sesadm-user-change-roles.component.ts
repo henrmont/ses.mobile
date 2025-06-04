@@ -7,11 +7,12 @@ import { SesadmService } from 'src/app/services/sesadm.service';
   templateUrl: './sesadm-user-change-roles.component.html',
   styleUrls: ['./sesadm-user-change-roles.component.scss'],
   standalone: true,
-  imports: [IonToast, IonToggle, IonList, IonContent, IonButtons, IonTitle, IonToolbar, IonHeader, IonModal, IonCardTitle, IonCardContent, IonItem, IonLabel, IonButton, IonIcon, IonCardHeader, IonCard, ]
+  imports: [IonToast, IonToggle, IonList, IonContent, IonButtons, IonTitle, IonToolbar, IonHeader, IonModal, IonCardTitle, IonCardContent, IonItem, IonLabel, IonButton, IonIcon, IonCardHeader, IonCard, IonText ]
 })
 export class SesadmUserChangeRolesComponent  implements OnInit {
 
   @Input() user: any
+  @Input() module: any
   @Output() updateUser = new EventEmitter<any>;
 
   constructor(
@@ -24,7 +25,7 @@ export class SesadmUserChangeRolesComponent  implements OnInit {
 
   roles: any
   getRoles() {
-    this.sesadmService.getRoles('sesadm').subscribe({
+    this.sesadmService.getRoles(this.module).subscribe({
       next: (response) => {
         this.roles = response
       }
@@ -46,7 +47,7 @@ export class SesadmUserChangeRolesComponent  implements OnInit {
   }
 
   changeRoleToUser(role: any) {
-    this.sesadmService.changeRoleToUser(role.id, this.user.id).subscribe()
+    this.sesadmService.changeRoleToUser(this.module, role.id, this.user.id).subscribe()
   }
 
   isRolesModalOpen = false;

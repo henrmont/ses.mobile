@@ -20,6 +20,14 @@ export class MainService {
     return this.http.get<any>(url)
   }
 
+  changeModuleUser(id: any): Observable<any> {
+    return this.http.patch<any>(`${environment.apiUrl}/user/change/module/user/${id}`, {headers: requestOptions})
+  }
+
+  getUserModule(id: any): Observable<any> {
+    return this.http.get<any>(`${environment.apiUrl}/module/get/user/module/${id}`, {headers: requestOptions})
+  }
+
   getUserModules(): Observable<any> {
     return this.http.get<any>(`${environment.apiUrl}/module/get/user/modules`, {headers: requestOptions})
   }

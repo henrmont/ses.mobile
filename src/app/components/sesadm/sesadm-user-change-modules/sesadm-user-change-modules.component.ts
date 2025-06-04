@@ -1,5 +1,5 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { IonCard, IonCardHeader, IonCardTitle, IonButton, IonIcon, IonLabel, IonItem, IonCardContent, IonModal, IonHeader, IonToolbar, IonTitle, IonButtons, IonList, IonContent, IonToggle, IonToast } from "@ionic/angular/standalone";
+import { IonCard, IonCardHeader, IonCardTitle, IonButton, IonIcon, IonLabel, IonItem, IonCardContent, IonModal, IonHeader, IonToolbar, IonTitle, IonButtons, IonList, IonContent, IonToggle, IonToast, IonText } from "@ionic/angular/standalone";
 import { SesadmService } from 'src/app/services/sesadm.service';
 
 @Component({
@@ -7,7 +7,7 @@ import { SesadmService } from 'src/app/services/sesadm.service';
   templateUrl: './sesadm-user-change-modules.component.html',
   styleUrls: ['./sesadm-user-change-modules.component.scss'],
   standalone: true,
-  imports: [IonToast, IonToggle, IonContent, IonList, IonButtons, IonTitle, IonToolbar, IonHeader, IonModal, IonCardContent, IonItem, IonLabel, IonIcon, IonButton, IonCardTitle, IonCardHeader, IonCard, ]
+  imports: [IonText, IonToast, IonToggle, IonContent, IonList, IonButtons, IonTitle, IonToolbar, IonHeader, IonModal, IonCardContent, IonItem, IonLabel, IonIcon, IonButton, IonCardTitle, IonCardHeader, IonCard, ]
 })
 export class SesadmUserChangeModulesComponent  implements OnInit {
 

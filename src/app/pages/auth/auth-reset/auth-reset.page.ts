@@ -18,7 +18,7 @@ export class AuthResetPage implements OnInit {
   auth_login = AuthLoginPage
 
   formulario: FormGroup = this.formBuilder.group({
-    email: [null, [Validators.required, Validators.email]],
+    id: [this.navParams.data['id'], [Validators.required]],
     npassword: [null, [Validators.required]],
     cpassword: [null, [Validators.required]]
   })
@@ -31,9 +31,6 @@ export class AuthResetPage implements OnInit {
   ) {}
 
   ngOnInit() {
-    this.formulario.patchValue({
-      email: this.navParams.data['email']
-    })
   }
 
   isToastOpen: boolean = false;

@@ -8,9 +8,6 @@
       <ion-menu-button class="primary"></ion-menu-button>
     </ion-buttons>
   </ion-toolbar>
-  <ion-toolbar color="primary">
-    <ion-searchbar placeholder="Buscar"></ion-searchbar>
-  </ion-toolbar>
 </ion-header>
 
 <ion-content>
@@ -18,12 +15,41 @@
     <ion-refresher-content></ion-refresher-content>
   </ion-refresher>
 
-  <ion-fab slot="fixed" vertical="bottom" horizontal="end">
-    <ion-fab-button>
-      <ion-icon name="cloud-upload-outline"></ion-icon>
-    </ion-fab-button>
-  </ion-fab>
+  @if (hasPermission('sesadm/sigtap criar')) {
+    <input type="file" name="sigtap" #sigtap style="display: none;" accept=".zip" (change)="onFileChange($event)" />
+    <ion-fab slot="fixed" vertical="bottom" horizontal="end">
+      <ion-fab-button (click)="selectSigtap()" color="secondary">
+        <ion-icon name="cloud-upload-outline"></ion-icon>
+      </ion-fab-button>
+    </ion-fab>
+  }
+
+  @for (item of competences; track $index; let last = $last) {
+    @defer (on viewport) {
+      <ion-nav-link router-direction="forward" [component]="sesadm_procedures" [componentProps]="item">
+        <ion-item class="user" [button]="true" [lines]="last ? 'none' : 'full'">
+          <ion-text class="title" style="font-size: 16px;" slot="start">{{item.name.slice(4, 6)}}/{{item.name.slice(0, 4)}}</ion-text>
+          <ion-icon [name]="item.is_current ? 'checkmark' : 'close'" slot="end"></ion-icon>
+        </ion-item>
+      </ion-nav-link>
+    } @placeholder {
+      <div></div>
+    }
+  } @empty {
+    <div style="width: 100%; margin-top: 20px; display: flex; flex-direction: column; align-items: center;">
+      <ion-icon name="eye-off-outline" color="medium" style="font-size: 100px;"></ion-icon>
+      <h3>Nenhum resultado!</h3>
+    </div>
+  }
 
 </ion-content>
 
-<ion-loading message="Aguarde" isOpen="true" duration="3000"></ion-loading>
+<ion-loading message="Aguarde" [isOpen]="loading"></ion-loading>
+
+<ion-toast
+  [isOpen]="isToastOpen"
+  [message]="toastMessage"
+  position="top"
+  [duration]="2000"
+  (didDismiss)="setToastOpen(false)"
+></ion-toast>

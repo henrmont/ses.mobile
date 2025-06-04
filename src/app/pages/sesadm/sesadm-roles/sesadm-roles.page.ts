@@ -4,6 +4,7 @@ import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators } 
 import { IonContent, IonHeader, IonTitle, IonToolbar, IonButtons, IonBackButton, IonSearchbar, IonMenuButton, IonFab, IonFabButton, IonIcon, IonModal, IonButton, IonInput, IonToast, IonRefresher, IonRefresherContent, IonLoading } from '@ionic/angular/standalone';
 import { SesadmService } from 'src/app/services/sesadm.service';
 import { SesadmRolesRoleComponent } from 'src/app/components/sesadm/sesadm-roles-role/sesadm-roles-role.component';
+import { ActivatedRoute } from '@angular/router';
 
 const restrictRoles = [
   'sesadm/sesadm',
@@ -23,6 +24,7 @@ export class SesadmRolesPage implements OnInit {
   constructor(
     private formBuilder: FormBuilder,
     private sesadmService: SesadmService,
+    private route: ActivatedRoute,
   ) { }
 
   ngOnInit() {
@@ -33,7 +35,6 @@ export class SesadmRolesPage implements OnInit {
   getRoles() {
     this.sesadmService.getRoles('sesadm').subscribe({
       next: (response) => {
-        console.log(response)
         this.roles = response
       }
     })
@@ -56,7 +57,7 @@ export class SesadmRolesPage implements OnInit {
     this.createForm.patchValue({
       name: 'sesadm/'+this.createForm.get('name')?.value,
     })
-    if (this.sesadmService.createRole(this.createForm.value).subscribe()) {
+    if (this.sesadmService.createRole('sesadm', this.createForm.value).subscribe()) {
       this.toastMessage = 'Regra criada com sucesso!'
       this.setCreateModalOpen(false)
       this.getRoles()
@@ -105,7 +106,7 @@ export class SesadmRolesPage implements OnInit {
     this.updateForm.patchValue({
       name: 'sesadm/'+this.updateForm.get('name')?.value,
     })
-    if (this.sesadmService.updateRole(this.updateForm.value).subscribe()) {
+    if (this.sesadmService.updateRole('sesadm',this.updateForm.value).subscribe()) {
       this.role['name'] = this.updateForm.get('name')?.value
       this.toastMessage = 'Regra editada com sucesso!'
       this.setUpdateModalOpen(false)
@@ -125,16 +126,6 @@ export class SesadmRolesPage implements OnInit {
     })
   }
 
-  hasPermission(roles: any, role: any) {
-    let validate = false
-    roles.forEach((element: any) => {
-      if (element.id == role.id) {
-        validate = true
-      }
-    });
-    return validate
-  }
-
   isToastOpen: boolean = false;
   toastMessage: string = ''
   setToastOpen(isOpen: boolean) {
@@ -151,7 +142,7 @@ export class SesadmRolesPage implements OnInit {
       text: 'Apagar',
       role: 'confirm',
       handler: () => {
-        if (this.sesadmService.deleteRole(this.role['id']).subscribe()) {
+        if (this.sesadmService.deleteRole('sesadm',this.role['id']).subscribe()) {
           this.toastMessage = 'Regra apagada com sucesso'
           this.setUpdateModalOpen(false)
           this.getRoles()
@@ -174,7 +165,19 @@ export class SesadmRolesPage implements OnInit {
   }
 
   changePermissionToRole(permission: any) {
-    this.sesadmService.changePermissionToRole(permission['id'], this.role['id']).subscribe()
+    this.sesadmService.changePermissionToRole('sesadm', permission['id'], this.role['id']).subscribe()
+  }
+
+  inner_roles = this.route.snapshot.parent?.data['user'].roles
+  hasPermission(permission: any) {
+    for (const element of this.inner_roles) {
+      for (const perm of element.permissions) {
+        if (perm.name == permission) {
+          return true;
+        }
+      }
+    }
+    return false;
   }
 
 }

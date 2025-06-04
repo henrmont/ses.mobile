@@ -1,17 +1,17 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
-import { IonContent, IonHeader, IonTitle, IonToolbar, IonNavLink, IonButton, IonIcon, IonButtons, IonBackButton, IonMenuButton, IonFab, IonFabButton, IonInput, IonModal, IonToast, IonSearchbar, IonItem, IonAvatar, IonRefresher, IonRefresherContent, IonLoading } from '@ionic/angular/standalone';
-import { AuthService } from 'src/app/services/auth.service';
+import { IonContent, IonHeader, IonTitle, IonToolbar, IonNavLink, IonButton, IonIcon, IonButtons, IonBackButton, IonMenuButton, IonFab, IonFabButton, IonInput, IonModal, IonToast, IonSearchbar, IonItem, IonAvatar, IonRefresher, IonRefresherContent, IonLoading, IonText } from '@ionic/angular/standalone';
 import { SesadmService } from 'src/app/services/sesadm.service';
 import { SesadmUserPage } from '../sesadm-user/sesadm-user.page';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-sesadm-users',
   templateUrl: './sesadm-users.page.html',
   styleUrls: ['./sesadm-users.page.scss'],
   standalone: true,
-  imports: [IonLoading, IonRefresherContent, IonRefresher, IonAvatar, IonItem, IonSearchbar, IonToast, IonModal, IonInput, IonFabButton, IonFab, IonBackButton, IonButtons, IonIcon, IonButton, IonNavLink, IonContent, IonHeader, IonTitle, IonToolbar, IonMenuButton, CommonModule, FormsModule, ReactiveFormsModule]
+  imports: [IonText, IonLoading, IonRefresherContent, IonRefresher, IonAvatar, IonItem, IonSearchbar, IonToast, IonModal, IonInput, IonFabButton, IonFab, IonBackButton, IonButtons, IonIcon, IonButton, IonNavLink, IonContent, IonHeader, IonTitle, IonToolbar, IonMenuButton, CommonModule, FormsModule, ReactiveFormsModule]
 })
 export class SesadmUsersPage implements OnInit {
 
@@ -24,8 +24,8 @@ export class SesadmUsersPage implements OnInit {
 
   constructor(
     private formBuilder: FormBuilder,
-    private authService: AuthService,
     private sesadmService: SesadmService,
+    private route: ActivatedRoute,
   ) { }
 
   ngOnInit() {
@@ -57,7 +57,7 @@ export class SesadmUsersPage implements OnInit {
   }
 
   onCreateSubmit(): any {
-    if (this.authService.create(this.createForm.value).subscribe()) {
+    if (this.sesadmService.create(this.createForm.value).subscribe()) {
       this.toastMessage = 'Usuário criado com sucesso!'
       this.setCreateModalOpen(false)
       this.getUsers()
@@ -72,6 +72,18 @@ export class SesadmUsersPage implements OnInit {
     setTimeout(() => {
       (event.target as HTMLIonRefresherElement).complete();
     }, 2000)
+  }
+
+  inner_roles = this.route.snapshot.parent?.data['user'].roles
+  hasPermission(permission: any) {
+    for (const element of this.inner_roles) {
+      for (const perm of element.permissions) {
+        if (perm.name == permission) {
+          return true;
+        }
+      }
+    }
+    return false;
   }
 
 }

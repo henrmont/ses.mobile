@@ -44,8 +44,4 @@ export class AuthService {
     return this.http.post<any>(`${environment.apiUrl}/auth/reset/password`, data, {headers: requestOptions})
   }
 
-  create(data: any): Observable<any> {
-    return this.http.post<any>(`${environment.apiUrl}/auth/create`, data)
-  }
-
 }

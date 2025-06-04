@@ -12,6 +12,7 @@ import { SesadmService } from 'src/app/services/sesadm.service';
 export class SesadmUserChangeValidComponent  implements OnInit {
 
   @Input() user: any
+  @Input() module: any
 
   constructor(
     private sesadmService: SesadmService
@@ -20,7 +21,7 @@ export class SesadmUserChangeValidComponent  implements OnInit {
   ngOnInit() {}
 
   changeValidUser() {
-    this.sesadmService.changeValidUser(this.user.id).subscribe()
+    this.sesadmService.changeValidUser(this.module,this.user.id).subscribe()
   }
 
 }

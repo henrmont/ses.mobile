@@ -1,28 +1,28 @@
 <ion-menu contentId="main-content" side="end" [maxEdgeStart]="0">
-  <ion-content class="ion-padding" color="secondary" style="display: flex; flex-direction: column; justify-content: space-between;">
+  <ion-content class="ion-padding" color="tertiary" style="display: flex; flex-direction: column; justify-content: space-between;">
     <div style="width: 100%; display: flex; flex-direction: column; gap: 10px; padding-bottom: 10px; align-items: center;">
       <img [src]="user.picture ? user.picture : 'https://ionicframework.com/docs/img/demos/avatar.svg'" style="width: 100px; height: 100px; border-radius: 100%; box-shadow: rgba(0, 0, 0, 0.19) 0px 10px 20px, rgba(0, 0, 0, 0.23) 0px 6px 6px;">
       <span style="font-size: 18px;">{{user.name}}</span>
       <span style="font-size: 14px;">{{user.email}}</span>
     </div>
     <ion-list lines="none">
-      <ion-item-divider color="secondary">Web Ponto</ion-item-divider>
-      <ion-item color="secondary">
+      <ion-item-divider color="tertiary">Web Ponto</ion-item-divider>
+      <ion-item color="tertiary">
         <ion-icon color="success" slot="start" name="checkmark-circle"></ion-icon>
         <ion-label>Entrada Manhã</ion-label>
         <ion-note slot="end">7:30</ion-note>
       </ion-item>
-      <ion-item color="secondary">
+      <ion-item color="tertiary">
         <ion-icon color="danger" slot="start" name="warning"></ion-icon>
         <ion-label>Saída Manhã</ion-label>
         <!-- <ion-note slot="end">7:30</ion-note> -->
       </ion-item>
-      <ion-item color="secondary">
+      <ion-item color="tertiary">
         <ion-icon color="danger" slot="start" name="warning"></ion-icon>
         <ion-label>Entrada Tarde</ion-label>
         <!-- <ion-note slot="end">7:30</ion-note> -->
       </ion-item>
-      <ion-item color="secondary">
+      <ion-item color="tertiary">
         <ion-icon color="danger" slot="start" name="warning"></ion-icon>
         <ion-label>Saída Tarde</ion-label>
         <!-- <ion-note slot="end">7:30</ion-note> -->
@@ -30,17 +30,21 @@
     </ion-list>
 
     <ion-list lines="none">
-      <ion-item-divider color="secondary">Sistema</ion-item-divider>
+      <ion-item-divider color="tertiary">Sistema</ion-item-divider>
       <ion-menu-toggle auto-hide="true">
-        <ion-item [button]="true" lines="none" color="secondary" [routerLink]="['/main/profile']">
+        <ion-item [button]="true" lines="none" color="tertiary" [routerLink]="['/main/profile']">
           <ion-icon name="person-outline" slot="start"></ion-icon>
           <ion-label>Perfil</ion-label>
         </ion-item>
-        <ion-item [button]="true" lines="none" color="secondary" [routerLink]="['/main/info']">
+        <ion-item [button]="true" lines="none" color="tertiary" (click)="setChangeModuleModalOpen(true);">
+          <ion-icon name="apps" slot="start"></ion-icon>
+          <ion-label>Selecionar módulo</ion-label>
+        </ion-item>
+        <ion-item [button]="true" lines="none" color="tertiary" [routerLink]="['/main/info']">
           <ion-icon name="information-circle-outline" slot="start"></ion-icon>
           <ion-label>Sobre</ion-label>
         </ion-item>
-        <ion-item [button]="true" lines="none" color="secondary" (click)="logout()">
+        <ion-item [button]="true" lines="none" color="tertiary" (click)="logout()">
           <ion-icon name="log-out-outline" slot="start" color="danger"></ion-icon>
           <ion-label color="danger">Sair</ion-label>
         </ion-item>
@@ -57,16 +61,18 @@
 </div>
 
 <ion-tabs>
-  <ion-tab-bar slot="bottom" color="secondary">
+  <ion-tab-bar slot="bottom" color="tertiary">
     <ion-tab-button tab="home">
       <ion-icon name="home"></ion-icon>
     </ion-tab-button>
     <ion-tab-button tab="dashboard">
       <ion-icon name="stats-chart"></ion-icon>
     </ion-tab-button>
-    <ion-tab-button tab="modules">
-      <ion-icon name="apps"></ion-icon>
-    </ion-tab-button>
+    @if (user.module) {
+      <ion-tab-button tab="modules" [disabled]="moduleStatus">
+        <ion-icon name="apps"></ion-icon>
+      </ion-tab-button>
+    }
     <ion-tab-button tab="notifications">
       <ion-icon name="notifications"></ion-icon>
       <!-- @if(notificationsCount != 0) {
@@ -78,3 +84,34 @@
     </ion-tab-button>
   </ion-tab-bar>
 </ion-tabs>
+
+<ion-modal [isOpen]="isChangeModuleModalOpen">
+  <ng-template>
+    <ion-header>
+      <ion-toolbar color="primary">
+        <ion-title>Selecione o Módulo</ion-title>
+        <ion-buttons slot="end">
+          <ion-button (click)="setChangeModuleModalOpen(false);">
+            <ion-icon slot="icon-only" name="close"></ion-icon>
+          </ion-button>
+        </ion-buttons>
+      </ion-toolbar>
+    </ion-header>
+
+    <ion-content>
+      <ion-list>
+        @for (item of user.modules; track $index; let last = $last) {
+          <ion-item [button]="true" (click)="changeModule(item.id); setChangeModuleModalOpen(false);" [disabled]="checkModule(item.id)" [lines]="last ? 'none' : 'full'">
+            <ion-label>{{ item.name }}</ion-label>
+            @if (checkModule(item.id)) {
+              <ion-icon slot="end" name="checkmark"></ion-icon>
+            }
+          </ion-item>
+        }
+      </ion-list>
+    </ion-content>
+
+  </ng-template>
+</ion-modal>
+
+

@@ -4,8 +4,8 @@
       <img alt="" src="https://ionicframework.com/docs/img/demos/avatar.svg" />
     </ion-avatar>
     <div style="display: flex; flex-direction: column; gap: 5px;">
-      <span style="font-size: 14px;">{{ notification.data.title }}</span>
-      <span style="font-size: 12px;">{{ notification.data.message }}</span>
+      <ion-text class="title">{{ notification.data.title }}</ion-text>
+      <ion-text class="content">{{ notification.data.message }}</ion-text>
     </div>
   </ion-item>
   <ion-item-options side="start">

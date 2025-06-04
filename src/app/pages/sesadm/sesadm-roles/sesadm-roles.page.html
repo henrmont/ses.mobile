@@ -19,15 +19,17 @@
     <ion-refresher-content></ion-refresher-content>
   </ion-refresher>
 
-  <ion-fab slot="fixed" vertical="bottom" horizontal="end">
-    <ion-fab-button (click)="setCreateModalOpen(true)">
-      <ion-icon name="add"></ion-icon>
-    </ion-fab-button>
-  </ion-fab>
+  @if (hasPermission('sesadm/regra criar')) {
+    <ion-fab slot="fixed" vertical="bottom" horizontal="end">
+      <ion-fab-button (click)="setCreateModalOpen(true)" color="secondary">
+        <ion-icon name="add"></ion-icon>
+      </ion-fab-button>
+    </ion-fab>
+  }
 
   @for (item of roles; track $index; let last = $last) {
     @defer (on viewport) {
-      <app-sesadm-roles-role [role]="item" [last]="last"></app-sesadm-roles-role>
+      <app-sesadm-roles-role [role]="item" [last]="last" [inner_roles]="inner_roles" [module]="'sesadm'"></app-sesadm-roles-role>
     } @placeholder {
       <div></div>
     }

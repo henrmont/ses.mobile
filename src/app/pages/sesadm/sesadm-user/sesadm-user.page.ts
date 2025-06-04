@@ -22,7 +22,6 @@ export class SesadmUserPage implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.getRoles()
   }
 
   user: any = this.navParams.data
@@ -32,40 +31,6 @@ export class SesadmUserPage implements OnInit {
         this.user = response
       }
     })
-  }
-
-  roles: any
-  getRoles() {
-    this.sesadmService.getRoles('sesadm').subscribe({
-      next: (response) => {
-        this.roles = response
-      }
-    })
-  }
-
-  hasRole(roles: any, role: any) {
-    let validate = false
-    roles.forEach((element: any) => {
-      if (element.id == role.id) {
-        validate = true
-      }
-    });
-    return validate
-  }
-
-  changeRoleToUser(role: any) {
-    this.sesadmService.changeRoleToUser(role['id'], this.user['id']).subscribe()
-  }
-
-  isRolesModalOpen = false;
-  setRolesModalOpen(isOpen: boolean) {
-    this.isRolesModalOpen = isOpen;
-  }
-
-  isToastOpen: boolean = false;
-  toastMessage: string = ''
-  setToastOpen(isOpen: boolean) {
-    this.isToastOpen = isOpen;
   }
 
 }

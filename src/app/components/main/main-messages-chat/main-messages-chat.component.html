@@ -6,11 +6,11 @@
     @for (item of chat.messages; track $index; let first = $first;) {
       @if (first) {
         <div style="display: flex; flex-direction: column; gap: 5px;">
-          <span style="font-size: 14px;">{{ chat.person_one.name }}</span>
+          <ion-text class="title">{{ chat.person_one.name }}</ion-text>
           @if (item.user.id == user.id) {
-            <span style="font-size: 12px;">Eu: {{ item.message.length > 30 ? item.message.slice(0, 30) + '...' : item.message }}</span>
+            <ion-text class="content">Eu: {{ item.message.length > 30 ? item.message.slice(0, 30) + '...' : item.message }}</ion-text>
           } @else {
-            <span style="font-size: 12px;">{{ item.user.name }}: {{ item.message.length > 30 ? item.message.slice(0, 30) + '...' : item.message }}</span>
+            <ion-text class="content">{{ item.user.name }}: {{ item.message.length > 30 ? item.message.slice(0, 30) + '...' : item.message }}</ion-text>
           }
         </div>
         <ion-note slot="end">{{ item.created_at | date: 'HH:mm' }}</ion-note>
@@ -23,11 +23,11 @@
     @for (item of chat.messages; track $index; let first = $first;) {
       @if (first) {
         <div style="display: flex; flex-direction: column; gap: 5px;">
-          <span style="font-size: 14px;">{{ chat.person_two.name }}</span>
+          <ion-text class="title">{{ chat.person_two.name }}</ion-text>
           @if (item.user.id == user.id) {
-            <span style="font-size: 12px;">Eu: {{ item.message.length > 30 ? item.message.slice(0, 30) + '...' : item.message }}</span>
+            <ion-text class="content">Eu: {{ item.message.length > 30 ? item.message.slice(0, 30) + '...' : item.message }}</ion-text>
           } @else {
-            <span style="font-size: 12px;">{{ item.user.name }}: {{ item.message.length > 30 ? item.message.slice(0, 30) + '...' : item.message }}</span>
+            <ion-text class="content">{{ item.user.name }}: {{ item.message.length > 30 ? item.message.slice(0, 30) + '...' : item.message }}</ion-text>
           }
         </div>
         <ion-note slot="end">{{ item.created_at | date: 'HH:mm' }}</ion-note>
@@ -46,14 +46,14 @@
           </ion-button>
         </ion-buttons>
         @if (chat.person_one.id != user.id) {
-          <ion-chip color="secondary">
+          <ion-chip color="tertiary">
             <ion-avatar>
               <img alt="" [src]="chat.person_one.picture ? chat.person_one.picture : 'https://ionicframework.com/docs/img/demos/avatar.svg'" />
             </ion-avatar>
             <ion-label>{{ chat.person_one.name }}</ion-label>
           </ion-chip>
         } @else {
-          <ion-chip color="secondary">
+          <ion-chip color="tertiary">
             <ion-avatar>
               <img alt="" [src]="chat.person_two.picture ? chat.person_two.picture : 'https://ionicframework.com/docs/img/demos/avatar.svg'" />
             </ion-avatar>
@@ -86,14 +86,14 @@
       }
       @if(showScrollButton) {
         <ion-fab vertical="top" horizontal="end" slot="fixed">
-          <ion-fab-button size="small" (click)="scrollToTop()">
+          <ion-fab-button size="small" (click)="scrollToTop()" color="secondary">
             <ion-icon name="arrow-up"></ion-icon>
           </ion-fab-button>
         </ion-fab>
       }
     </ion-content>
     <ion-footer>
-      <ion-toolbar color="secondary">
+      <ion-toolbar color="tertiary">
         <form [formGroup]="messageForm" (ngSubmit)="onMessageSubmit()">
           <ion-input fill="outline" formControlName="message">
             <ion-button fill="clear" slot="end" type="submit" [disabled]="messageForm.invalid || messageForm.get('message')?.value == ''">

@@ -1,0 +1,39 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/main/modules" icon="caret-back" class="primary" text=""></ion-back-button>
+    </ion-buttons>
+    <ion-title>Municípios</ion-title>
+    <ion-buttons slot="end">
+      <ion-menu-button class="primary"></ion-menu-button>
+    </ion-buttons>
+  </ion-toolbar>
+  <ion-toolbar color="primary">
+    <ion-searchbar placeholder="Buscar"></ion-searchbar>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-refresher slot="fixed" (ionRefresh)="handleRefresh($event)">
+    <ion-refresher-content></ion-refresher-content>
+  </ion-refresher>
+
+  <ion-list>
+    @for (item of counties; track $index; let last = $last) {
+      @defer (on viewport) {
+        <app-sesadm-counties-county [county]="item" [last]="last"></app-sesadm-counties-county>
+        <!-- <app-sesadm-roles-role [role]="item" [last]="last"></app-sesadm-roles-role> -->
+      } @placeholder {
+        <div></div>
+      }
+    } @empty {
+      <div style="width: 100%; margin-top: 20px; display: flex; flex-direction: column; align-items: center;">
+        <ion-icon name="eye-off-outline" color="medium" style="font-size: 100px;"></ion-icon>
+        <h3>Nenhum resultado!</h3>
+      </div>
+    }
+  </ion-list>
+
+</ion-content>
+
+<ion-loading message="Aguarde" isOpen="true" duration="3000"></ion-loading>

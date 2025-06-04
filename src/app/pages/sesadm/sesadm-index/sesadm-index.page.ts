@@ -6,6 +6,7 @@ import { SesadmUsersPage } from '../sesadm-users/sesadm-users.page';
 import { SesadmRolesPage } from '../sesadm-roles/sesadm-roles.page';
 import { SesadmSigtapPage } from '../sesadm-sigtap/sesadm-sigtap.page';
 import { SesadmCountiesPage } from '../sesadm-counties/sesadm-counties.page';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-sesadm-index',
@@ -21,9 +22,23 @@ export class SesadmIndexPage implements OnInit {
   sesadm_sigtap = SesadmSigtapPage
   sesadm_counties = SesadmCountiesPage
 
-  constructor() { }
+  constructor(
+    private route: ActivatedRoute
+  ) { }
 
   ngOnInit() {
+  }
+
+  inner_roles = this.route.snapshot.parent?.data['user'].roles
+  hasPermission(permission: any) {
+    for (const element of this.inner_roles) {
+      for (const perm of element.permissions) {
+        if (perm.name == permission) {
+          return true;
+        }
+      }
+    }
+    return false;
   }
 
 }

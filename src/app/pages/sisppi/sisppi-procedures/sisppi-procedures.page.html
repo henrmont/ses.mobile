@@ -1,0 +1,36 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/main/modules" icon="caret-back" class="primary" text=""></ion-back-button>
+    </ion-buttons>
+    <ion-title>Procedimentos</ion-title>
+    <ion-buttons slot="end">
+      <ion-menu-button class="primary"></ion-menu-button>
+    </ion-buttons>
+  </ion-toolbar>
+  <ion-toolbar color="primary">
+    <ion-searchbar placeholder="Buscar"></ion-searchbar>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-list>
+    @for (item of procedures; track $index; let last = $last) {
+      @defer (on viewport) {
+        <app-sisppi-procedures-procedure [procedure]="item" [last]="last"></app-sisppi-procedures-procedure>
+      } @placeholder {
+        <div></div>
+      }
+    } @empty {
+      <div style="width: 100%; margin-top: 20px; display: flex; flex-direction: column; align-items: center;">
+        <ion-icon name="eye-off-outline" color="medium" style="font-size: 100px;"></ion-icon>
+        <h3>Nenhum resultado!</h3>
+      </div>
+    }
+  </ion-list>
+  <ion-infinite-scroll (ionInfinite)="onIonInfinite($event)">
+    <ion-infinite-scroll-content loadingSpinner="bubbles"></ion-infinite-scroll-content>
+  </ion-infinite-scroll>
+</ion-content>
+
+<ion-loading message="Aguarde" [isOpen]="loading"></ion-loading>

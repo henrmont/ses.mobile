@@ -1,0 +1,52 @@
+<ion-item class="user" [button]="true" [lines]="last ? 'none' : 'full'" (click)="setShowModalOpen(true)">
+  <div style="display: flex; flex-direction: column; width: 100%;">
+    <ion-text slot="start" class="title">{{procedure.code}}</ion-text>
+    <ion-text slot="start" class="content" style="font-size: 11px;" color="medium">{{ procedure.name.length > 40 ? procedure.name.slice(0, 40) + '...' : procedure.name }}</ion-text>
+  </div>
+  <ion-icon name="chevron-forward" slot="end" size="small"></ion-icon>
+</ion-item>
+
+<ion-modal [isOpen]="isShowModalOpen">
+  <ng-template>
+    <ion-header>
+      <ion-toolbar color="primary">
+        <ion-title>Visualizar procedimento</ion-title>
+        <ion-buttons slot="end">
+          <ion-button (click)="setShowModalOpen(false)">
+            <ion-icon slot="icon-only" name="close"></ion-icon>
+          </ion-button>
+        </ion-buttons>
+      </ion-toolbar>
+    </ion-header>
+    <ion-content class="ion-padding">
+      <ion-card color="light">
+        <ion-card-header>
+          <ion-card-title>Informações gerais</ion-card-title>
+        </ion-card-header>
+
+        <ion-card-content>
+          <ion-list>
+            <ion-item lines="full" color="light">
+              <ion-label>
+                <h3>Código SIGTAP</h3>
+                <ion-text color="medium" style="font-size: 12px;">{{procedure.code}}</ion-text>
+              </ion-label>
+            </ion-item>
+            <ion-item lines="full" color="light">
+              <ion-label>
+                <h3>Nome</h3>
+                <ion-text color="medium" style="font-size: 12px;">{{procedure.name}}</ion-text>
+              </ion-label>
+            </ion-item>
+            <ion-item lines="full" color="light">
+              <ion-label>
+                <h3>Descrição</h3>
+                <ion-text color="medium" style="font-size: 12px;">{{procedure.description.description}}</ion-text>
+              </ion-label>
+            </ion-item>
+          </ion-list>
+        </ion-card-content>
+      </ion-card>
+    </ion-content>
+  </ng-template>
+</ion-modal>

@@ -1,0 +1,38 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/main/modules" icon="caret-back" class="primary" text=""></ion-back-button>
+    </ion-buttons>
+    <ion-title>Competências</ion-title>
+    <ion-buttons slot="end">
+      <ion-menu-button class="primary"></ion-menu-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-refresher slot="fixed">
+    <ion-refresher-content></ion-refresher-content>
+  </ion-refresher>
+
+  @for (item of competences; track $index; let last = $last) {
+    @defer (on viewport) {
+      <ion-nav-link router-direction="forward" [component]="sisppi_procedures" [componentProps]="item">
+        <ion-item class="user" [button]="true" [lines]="last ? 'none' : 'full'">
+          <ion-text slot="start">{{item.name.slice(4, 6)}}/{{item.name.slice(0, 4)}}</ion-text>
+          <ion-icon [name]="item.is_current ? 'checkmark' : 'close'" slot="end"></ion-icon>
+        </ion-item>
+      </ion-nav-link>
+    } @placeholder {
+      <div></div>
+    }
+  } @empty {
+    <div style="width: 100%; margin-top: 20px; display: flex; flex-direction: column; align-items: center;">
+      <ion-icon name="eye-off-outline" color="medium" style="font-size: 100px;"></ion-icon>
+      <h3>Nenhum resultado!</h3>
+    </div>
+  }
+
+</ion-content>
+
+<ion-loading message="Aguarde" [isOpen]="loading"></ion-loading>

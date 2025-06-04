@@ -22,7 +22,6 @@
     @for (item of counties; track $index; let last = $last) {
       @defer (on viewport) {
         <app-sesadm-counties-county [county]="item" [last]="last"></app-sesadm-counties-county>
-        <!-- <app-sesadm-roles-role [role]="item" [last]="last"></app-sesadm-roles-role> -->
       } @placeholder {
         <div></div>
       }

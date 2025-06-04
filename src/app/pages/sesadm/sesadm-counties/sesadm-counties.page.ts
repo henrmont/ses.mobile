@@ -24,7 +24,7 @@ export class SesadmCountiesPage implements OnInit {
 
   counties: any
   getCounties() {
-    this.sesadmService.getCounties().subscribe({
+    this.sesadmService.getCounties('sesadm').subscribe({
       next: (response) => {
         this.counties = response
       },

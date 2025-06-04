@@ -17,15 +17,30 @@
   <ion-refresher slot="fixed" (ionRefresh)="handleRefresh($event)">
     <ion-refresher-content></ion-refresher-content>
   </ion-refresher>
-  <ion-fab slot="fixed" vertical="bottom" horizontal="end">
-    <ion-fab-button (click)="setCreateModalOpen(true)">
-      <ion-icon name="add"></ion-icon>
-    </ion-fab-button>
-  </ion-fab>
+  @if (hasPermission('sesadm/usuário criar')) {
+    <ion-fab slot="fixed" vertical="bottom" horizontal="end">
+      <ion-fab-button (click)="setCreateModalOpen(true)" color="secondary">
+        <ion-icon name="add"></ion-icon>
+      </ion-fab-button>
+    </ion-fab>
+  }
   @for (item of users; track $index; let last = $last) {
     @defer (on viewport) {
-      <ion-nav-link router-direction="forward" [component]="sesadm_user" [componentProps]="item">
-        <ion-item class="user" [button]="true" [lines]="last ? 'none' : 'full'">
+      @if (hasPermission('sesadm/usuário editar')) {
+        <ion-nav-link router-direction="forward" [component]="sesadm_user" [componentProps]="item">
+          <ion-item class="user" [button]="true" [lines]="last ? 'none' : 'full'">
+            <ion-avatar slot="start">
+              <img alt="" src="https://ionicframework.com/docs/img/demos/avatar.svg" />
+            </ion-avatar>
+            <div style="display: flex; flex-direction: column; gap: 5px;">
+              <ion-text class="title">{{item.name}}</ion-text>
+              <ion-text class="content">{{item.email}}</ion-text>
+            </div>
+            <ion-icon [name]="item.is_valid ? 'checkmark' : 'close'" slot="end"></ion-icon>
+          </ion-item>
+        </ion-nav-link>
+      } @else {
+        <ion-item class="user" [button]="false" [lines]="last ? 'none' : 'full'">
           <ion-avatar slot="start">
             <img alt="" src="https://ionicframework.com/docs/img/demos/avatar.svg" />
           </ion-avatar>
@@ -35,7 +50,7 @@
           </div>
           <ion-icon [name]="item.is_valid ? 'checkmark' : 'close'" slot="end"></ion-icon>
         </ion-item>
-      </ion-nav-link>
+      }
     } @placeholder {
       <div></div>
     }

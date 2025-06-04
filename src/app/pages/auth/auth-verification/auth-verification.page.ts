@@ -22,7 +22,7 @@ export class AuthVerificationPage implements OnInit {
   };
 
   formulario: FormGroup = this.formBuilder.group({
-    email: [null, [Validators.required, Validators.email]],
+    id: [this.navParams.data['id'], [Validators.required]],
     one: ['', [Validators.required, Validators.maxLength(1), Validators.minLength(1)]],
     two: ['', [Validators.required, Validators.maxLength(1), Validators.minLength(1)]],
     three: ['', [Validators.required, Validators.maxLength(1), Validators.minLength(1)]],
@@ -37,9 +37,6 @@ export class AuthVerificationPage implements OnInit {
   ) {}
 
   ngOnInit() {
-    this.formulario.patchValue({
-      email: this.navParams.data['email']
-    })
   }
 
   isToastOpen: boolean = false
@@ -56,7 +53,7 @@ export class AuthVerificationPage implements OnInit {
       },
       complete: () => {
         this.nav.push(AuthResetPage, {
-          email: this.formulario.value.email
+          id: this.navParams.data['id']
         })
       }
     })

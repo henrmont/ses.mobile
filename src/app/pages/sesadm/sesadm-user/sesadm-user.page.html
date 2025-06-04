@@ -12,9 +12,9 @@
 
 <ion-content class="ion-padding">
   <div style="display: flex; flex-direction: column;">
-    <app-sesadm-user-change-valid [user]="user"></app-sesadm-user-change-valid>
-    <app-sesadm-user-change-info [user]="user" (updateUser)="getUser()"></app-sesadm-user-change-info>
+    <app-sesadm-user-change-valid [user]="user" [module]="'sesadm'"></app-sesadm-user-change-valid>
+    <app-sesadm-user-change-info [user]="user" [module]="'sesadm'" (updateUser)="getUser()"></app-sesadm-user-change-info>
     <app-sesadm-user-change-modules [user]="user" (updateUser)="getUser()"></app-sesadm-user-change-modules>
-    <app-sesadm-user-change-roles [user]="user" (updateUser)="getUser()"></app-sesadm-user-change-roles>
+    <app-sesadm-user-change-roles [user]="user" [module]="'sesadm'" (updateUser)="getUser()"></app-sesadm-user-change-roles>
   </div>
 </ion-content>

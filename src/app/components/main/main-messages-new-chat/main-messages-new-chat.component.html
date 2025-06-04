@@ -3,8 +3,8 @@
     <img alt="" [src]="user.picture ? user.picture : 'https://ionicframework.com/docs/img/demos/avatar.svg'" />
   </ion-avatar>
   <div style="display: flex; flex-direction: column; gap: 5px;">
-    <span style="font-size: 14px;">{{ user.name }}</span>
-    <span style="font-size: 12px;">{{ user.email }}</span>
+    <ion-text class="title">{{ user.name }}</ion-text>
+    <ion-text class="content">{{ user.email }}</ion-text>
   </div>
 </ion-item>
 
@@ -18,14 +18,14 @@
           </ion-button>
         </ion-buttons>
         @if (chat.person_one.id == user.id) {
-          <ion-chip color="secondary">
+          <ion-chip color="tertiary">
             <ion-avatar>
               <img alt="" [src]="chat.person_one.picture ? chat.person_one.picture : 'https://ionicframework.com/docs/img/demos/avatar.svg'" />
             </ion-avatar>
             <ion-label>{{ chat.person_one.name }}</ion-label>
           </ion-chip>
         } @else {
-          <ion-chip color="secondary">
+          <ion-chip color="tertiary">
             <ion-avatar>
               <img alt="" [src]="chat.person_two.picture ? chat.person_two.picture : 'https://ionicframework.com/docs/img/demos/avatar.svg'" />
             </ion-avatar>
@@ -58,14 +58,14 @@
       }
       @if(showScrollButton) {
         <ion-fab vertical="top" horizontal="end" slot="fixed">
-          <ion-fab-button size="small" (click)="scrollToTop()">
+          <ion-fab-button size="small" (click)="scrollToTop()" color="secondary">
             <ion-icon name="arrow-up"></ion-icon>
           </ion-fab-button>
         </ion-fab>
       }
     </ion-content>
     <ion-footer>
-      <ion-toolbar color="secondary">
+      <ion-toolbar color="tertiary">
         <form [formGroup]="messageForm" (ngSubmit)="onMessageSubmit()">
           <ion-input fill="outline" formControlName="message">
             <ion-button fill="clear" slot="end" type="submit" [disabled]="messageForm.invalid || messageForm.get('message')?.value == ''">

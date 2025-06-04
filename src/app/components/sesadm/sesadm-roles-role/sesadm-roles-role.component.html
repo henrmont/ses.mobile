@@ -1,6 +1,6 @@
-<ion-item class="user" [button]="true" [lines]="last ? 'none' : 'full'" (click)="setUpdateModalOpen(true)">
-  <ion-icon size="large" slot="start" [name]="checkRestrictRole(role.name) ? 'checkmark-circle-outline' : 'close-circle-outline'" [color]="checkRestrictRole(role.name) ? 'success' : 'danger'"></ion-icon>
-  <ion-label slot="end">{{role.name}}</ion-label>
+<ion-item class="user" [button]="true" [lines]="last ? 'none' : 'full'" (click)="setUpdateModalOpen(true)" [disabled]="!checkRestrictRole(role.name)">
+  <ion-icon size="large" slot="start" [name]="checkRestrictRole(role.name) ? 'lock-open' : 'lock-closed'" [color]="checkRestrictRole(role.name) ? 'success' : 'danger'"></ion-icon>
+  <ion-text class="title" slot="end">{{role.name}}</ion-text>
 </ion-item>
 
 <ion-modal [isOpen]="isUpdateModalOpen">
@@ -17,21 +17,25 @@
     </ion-header>
     <ion-content class="ion-padding">
       <form [formGroup]="updateForm" (ngSubmit)="onUpdateSubmit()" style="display: flex; flex-direction: column; gap: 20px;">
-        <ion-input type="text" label="Nome" label-placement="floating" formControlName="name" style="border-bottom: 1px solid gray;" [readonly]="!checkRestrictRole(role.name)"></ion-input>
+        <ion-input type="text" label="Nome" label-placement="floating" formControlName="name" style="border-bottom: 1px solid gray;" [readonly]="!checkRestrictRole(role.name) || !hasPermission(module+'/regra editar')"></ion-input>
         <ion-list>
           <ion-list-header>
-            <ion-label>Permissões</ion-label>
+            <ion-text class="title" style="font-size: 18px; font-weight: 500;">Permissões</ion-text>
           </ion-list-header>
           @for (item of permissions; track $index; let last = $last) {
             <ion-item [lines]="last ? 'none' : 'full'">
-              <ion-label>{{item.name}}</ion-label>
-              <ion-toggle slot="end" [disabled]="!checkRestrictRole(role.name)" [checked]="hasPermission(item.roles, role)" (click)="changePermissionToRole(item)"></ion-toggle>
+              <ion-text class="title">{{item.name}}</ion-text>
+              <ion-toggle slot="end" [disabled]="!checkRestrictRole(role.name) || !hasPermission(module+'/regra editar')" [checked]="havePermission(item.roles, role)" (ionChange)="changePermissionToRole(item)"></ion-toggle>
             </ion-item>
           }
         </ion-list>
         @if (checkRestrictRole(role.name)) {
-          <ion-button expand="block" fill="solid" type="submit" [disabled]="updateForm.invalid">Alterar regra</ion-button>
-          <ion-button expand="block" fill="solid" type="button" color="danger" (click)="setAlertOpen(true)">Excluir regra</ion-button>
+          @if (hasPermission(module+'/regra editar')) {
+            <ion-button expand="block" fill="solid" type="submit" [disabled]="updateForm.invalid">Alterar regra</ion-button>
+          }
+          @if (hasPermission(module+'/regra apagar')) {
+            <ion-button expand="block" fill="solid" type="button" color="danger" (click)="setAlertOpen(true)">Excluir regra</ion-button>
+          }
         }
       </form>
     </ion-content>

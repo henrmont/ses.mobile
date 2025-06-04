@@ -1,12 +1,12 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { IonItemOptions, IonItemOption, IonItemSliding, IonItem, IonAvatar } from "@ionic/angular/standalone";
+import { IonItemOptions, IonItemOption, IonItemSliding, IonItem, IonAvatar, IonText } from "@ionic/angular/standalone";
 
 @Component({
   selector: 'app-main-notifications-notification',
   templateUrl: './main-notifications-notification.component.html',
   styleUrls: ['./main-notifications-notification.component.scss'],
   standalone: true,
-  imports: [IonAvatar, IonItem, IonItemSliding, IonItemOption, IonItemOptions, ]
+  imports: [IonText, IonAvatar, IonItem, IonItemSliding, IonItemOption, IonItemOptions, ]
 })
 export class MainNotificationsNotificationComponent  implements OnInit {
 
